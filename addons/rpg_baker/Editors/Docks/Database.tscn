@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb7d7kxc0mpbq"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Docks/DatabaseEditor.gd" id="1_jheky"]
+
+[node name="Database" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jheky")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Variables" type="Control" parent="TabContainer"]
+layout_mode = 2
+
+[node name="VarCount" type="LineEdit" parent="TabContainer/Variables"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 6.0
+offset_right = 127.062
+offset_bottom = 37.0
+text = "0"
+
+[node name="CountLabel" type="Label" parent="TabContainer/Variables"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 55.0
+offset_bottom = 35.0
+text = "Count"
+
+[node name="Resize" type="Button" parent="TabContainer/Variables"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 5.0
+offset_right = 193.0
+offset_bottom = 36.0
+text = "Resize"
+
+[node name="counters" type="VBoxContainer" parent="TabContainer/Variables"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 54.0
+offset_right = 64.0
+offset_bottom = 94.0
+
+[node name="variables" type="VBoxContainer" parent="TabContainer/Variables"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 63.0
+offset_right = 133.0
+offset_bottom = 103.0
+
+[node name="Switches" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Save" type="Button" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 3.0
+offset_right = 329.0
+offset_bottom = 34.0
+text = "Save"
+
+[connection signal="button_down" from="TabContainer/Variables/Resize" to="." method="_on_resize_button_down"]
+[connection signal="button_down" from="Save" to="." method="_on_save_button_down"]

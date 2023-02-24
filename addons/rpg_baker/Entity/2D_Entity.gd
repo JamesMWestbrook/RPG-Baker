@@ -19,7 +19,7 @@ extends CharacterBody2D
 @export var CommandsToRun:Array[Command]
 		
 @onready var Collision = $CollisionShape2D
-signal run_event()
+signal run_event(commands_to_run)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if TouchTrigger:
@@ -35,5 +35,5 @@ func _process(delta):
 
 func _collision():
 	if TouchTrigger:
-		run_event.emit()
+		run_event.emit(CommandsToRun)
 	pass # Replace with function body.

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ytppslcogsoa"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Docks/CounterButton.gd" id="1_k311a"]
+
+[node name="CounterButton" type="Button"]
+script = ExtResource("1_k311a")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

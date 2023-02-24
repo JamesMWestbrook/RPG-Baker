@@ -1,6 +1,5 @@
 extends Node
 
-var CommandsToRun:Array[Command]
 var RunningCommand = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +10,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _run_event():
-	pass # Replace with function body.
-	for command in CommandsToRun:
+func _run_event(commands_to_run):
+	for command in commands_to_run:
 		command.run()
