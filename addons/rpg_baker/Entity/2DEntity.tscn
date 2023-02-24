@@ -21,3 +21,5 @@ shape = SubResource("RectangleShape2D_74ujm")
 
 [node name="Entity" type="Node" parent="."]
 script = ExtResource("3_h5y4f")
+
+[connection signal="run_event" from="." to="Entity" method="_run_event"]
