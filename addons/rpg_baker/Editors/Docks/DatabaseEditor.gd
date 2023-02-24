@@ -5,7 +5,7 @@ var cur_var_list = 0
 
 func _ready():
 	print("Ready")
-	
+	Database._load_defaults()
 	#variables
 	if !Database.variables.is_empty():
 		$TabContainer/Variables/VarCount.text = str(Database.variables.size())
@@ -25,6 +25,7 @@ func _on_resize_button_down():
 	var new_count = 1 + int($TabContainer/Variables/VarCount.text)
 	Database.variables.resize(new_count)
 	Database.variable_names.resize(new_count)
+	Database._clear_nulls()
 	_clear_column()
 	_load_counters()
 	
@@ -82,6 +83,6 @@ func _clear_counters():
 
 
 func _on_save_button_down():
-	pass # Replace with function body.
+	Database._save_defaults()
 
 
