@@ -10,7 +10,10 @@ var unit = 1
 var values_per_column = 20
 
 var defaults_path = "res://data/database.json"
-
+func _ready():
+	_load_defaults()
+	
+	
 func _save_defaults():
 	var database = {
 		"variables" : variables,

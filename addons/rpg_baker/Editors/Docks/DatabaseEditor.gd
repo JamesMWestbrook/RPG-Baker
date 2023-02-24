@@ -5,7 +5,6 @@ var cur_var_list = 0
 
 func _ready():
 	print("Ready")
-	Database._load_defaults()
 	#variables
 	if !Database.variables.is_empty():
 		$TabContainer/Variables/VarCount.text = str(Database.variables.size())
