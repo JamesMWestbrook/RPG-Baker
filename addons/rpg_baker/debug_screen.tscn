@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://addons/rpg_baker/debug_screen.gd" id="1_x3chk"]
 
 [node name="DebugScreen" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

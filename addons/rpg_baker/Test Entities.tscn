@@ -1,8 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dutoo2m3fss1x"]
+[gd_scene load_steps=8 format=3 uid="uid://dutoo2m3fss1x"]
 
 [ext_resource type="PackedScene" uid="uid://cimk2leypwe5v" path="res://addons/rpg_baker/Entity/2DEntity.tscn" id="1_jgsyk"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Commands/ChangeSwitch.gd" id="2_t8yfb"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Player.gd" id="4_8juli"]
 [ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="5_bwsmv"]
+
+[sub_resource type="Resource" id="Resource_7ma6h"]
+script = ExtResource("2_t8yfb")
+index = 2
+value = false
+debug_string = ""
+
+[sub_resource type="Resource" id="Resource_oub83"]
+script = ExtResource("2_t8yfb")
+index = 3
+value = true
+debug_string = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w2m4"]
 
@@ -13,6 +26,7 @@ position = Vector2(599, 144)
 collider_vector_scale = Vector2(6.415, 6.617)
 TouchTrigger = true
 InteractTrigger = false
+CommandsToRun = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_7ma6h"), SubResource("Resource_oub83")])
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(161, 143)

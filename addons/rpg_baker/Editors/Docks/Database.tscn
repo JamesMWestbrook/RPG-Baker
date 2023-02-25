@@ -26,7 +26,7 @@ offset_left = 60.0
 offset_top = 6.0
 offset_right = 127.062
 offset_bottom = 37.0
-text = "13"
+text = "14"
 
 [node name="CountLabel" type="Label" parent="TabContainer/Variables"]
 layout_mode = 0

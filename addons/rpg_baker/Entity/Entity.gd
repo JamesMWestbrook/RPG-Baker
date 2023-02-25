@@ -13,3 +13,5 @@ func _process(delta):
 func _run_event(commands_to_run):
 	for command in commands_to_run:
 		command.run()
+
+
