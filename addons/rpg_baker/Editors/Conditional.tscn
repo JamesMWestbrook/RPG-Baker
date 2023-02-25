@@ -126,6 +126,21 @@ offset_left = 61.0
 offset_right = 262.0
 offset_bottom = 31.0
 
+[node name="CheckBox2" type="CheckBox" parent="UseValueOrDatabase"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 30.0
+offset_right = 88.0
+offset_bottom = 61.0
+
+[node name="Label" type="Label" parent="UseValueOrDatabase/CheckBox2"]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 2.0
+offset_right = 1.0
+offset_bottom = 28.0
+text = "Is String"
+
 [connection signal="button_down" from="CheckedValueType" to="CheckedValueType" method="_on_button_down"]
 [connection signal="changed_data_type" from="CheckedValueType" to="CheckedValueType/CheckedValue" method="_update"]
 [connection signal="changed_data_type" from="CheckedValueType" to="CompareMethod" method="_on_changed_data_type"]
