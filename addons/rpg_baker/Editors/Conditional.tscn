@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs6364j0c2b2r"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/CheckedValueType.gd" id="1_gym51"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/CheckedValue.gd" id="2_ci7se"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/CompareMethod.gd" id="3_3dpr2"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/UseValueOrDatabase.gd" id="4_woxkh"]
+
+[node name="Conditional" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 23.0
+offset_bottom = 30.0
+text = "If"
+
+[node name="CheckedValueType" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 1.0
+offset_right = 96.0
+offset_bottom = 32.0
+text = "Variable"
+script = ExtResource("1_gym51")
+
+[node name="ItemList" type="ItemList" parent="CheckedValueType"]
+visible = false
+layout_mode = 0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 102.0
+offset_bottom = 67.0
+item_count = 2
+item_0/text = "Variable"
+item_1/text = "Switch"
+
+[node name="CheckedValue" type="Button" parent="CheckedValueType"]
+z_index = -1
+layout_mode = 0
+offset_left = 125.0
+offset_right = 198.0
+offset_bottom = 31.0
+text = "1: Name"
+script = ExtResource("2_ci7se")
+
+[node name="ItemList" type="ItemList" parent="CheckedValueType/CheckedValue"]
+visible = false
+layout_mode = 1
+offset_right = 287.0
+offset_bottom = 304.0
+
+[node name="CompareMethod" type="Button" parent="."]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 95.0
+offset_right = 25.0
+offset_bottom = 126.0
+text = "IS"
+script = ExtResource("3_3dpr2")
+
+[node name="ItemList" type="ItemList" parent="CompareMethod"]
+visible = false
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 40.0
+auto_height = true
+
+[node name="UseValueOrDatabase" type="Button" parent="."]
+layout_mode = 2
+offset_left = 62.0
+offset_top = 95.0
+offset_right = 120.0
+offset_bottom = 126.0
+text = "Global"
+script = ExtResource("4_woxkh")
+
+[node name="ItemList" type="ItemList" parent="UseValueOrDatabase"]
+visible = false
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 40.0
+auto_height = true
+item_count = 2
+item_0/text = "Global"
+item_1/text = "Value"
+
+[node name="GridContainer" type="GridContainer" parent="UseValueOrDatabase"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ComparedValue" type="Button" parent="UseValueOrDatabase"]
+z_index = -1
+layout_mode = 2
+offset_left = 60.0
+offset_right = 133.0
+offset_bottom = 31.0
+text = "1: Name"
+script = ExtResource("2_ci7se")
+
+[node name="ItemList" type="ItemList" parent="UseValueOrDatabase/ComparedValue"]
+visible = false
+layout_mode = 1
+offset_right = 287.0
+offset_bottom = 304.0
+
+[node name="CheckBox" type="CheckBox" parent="UseValueOrDatabase"]
+visible = false
+layout_mode = 2
+offset_left = 64.0
+offset_top = -1.0
+offset_right = 88.0
+offset_bottom = 30.0
+
+[node name="LineEdit" type="LineEdit" parent="UseValueOrDatabase"]
+visible = false
+layout_mode = 2
+offset_left = 61.0
+offset_right = 262.0
+offset_bottom = 31.0
+
+[connection signal="button_down" from="CheckedValueType" to="CheckedValueType" method="_on_button_down"]
+[connection signal="changed_data_type" from="CheckedValueType" to="CheckedValueType/CheckedValue" method="_update"]
+[connection signal="changed_data_type" from="CheckedValueType" to="CompareMethod" method="_on_changed_data_type"]
+[connection signal="changed_data_type" from="CheckedValueType" to="UseValueOrDatabase" method="_update"]
+[connection signal="changed_data_type" from="CheckedValueType" to="UseValueOrDatabase/ComparedValue" method="_update"]
+[connection signal="item_activated" from="CheckedValueType/ItemList" to="CheckedValueType" method="_on_item_list_item_activated"]
+[connection signal="button_down" from="CheckedValueType/CheckedValue" to="CheckedValueType/CheckedValue" method="_on_button_down"]
+[connection signal="item_activated" from="CheckedValueType/CheckedValue/ItemList" to="CheckedValueType/CheckedValue" method="_on_item_list_item_activated"]
+[connection signal="button_down" from="CompareMethod" to="CompareMethod" method="_on_button_down"]
+[connection signal="item_activated" from="CompareMethod/ItemList" to="CompareMethod" method="_on_item_list_item_activated"]
+[connection signal="button_down" from="UseValueOrDatabase" to="UseValueOrDatabase" method="_on_button_down"]
+[connection signal="item_activated" from="UseValueOrDatabase/ItemList" to="UseValueOrDatabase" method="_on_item_list_item_activated"]
+[connection signal="button_down" from="UseValueOrDatabase/ComparedValue" to="UseValueOrDatabase/ComparedValue" method="_on_button_down"]
+[connection signal="item_activated" from="UseValueOrDatabase/ComparedValue/ItemList" to="UseValueOrDatabase/ComparedValue" method="_on_item_list_item_activated"]
