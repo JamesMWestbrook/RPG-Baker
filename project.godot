@@ -46,7 +46,7 @@ editor/current_timeline_path=""
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/rpg_baker/plugin.cfg")
+enabled=PackedStringArray("res://addons/rpg_baker/plugin.cfg")
 
 [input]
 

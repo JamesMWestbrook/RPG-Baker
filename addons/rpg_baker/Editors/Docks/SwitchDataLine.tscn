@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt153peunaajv"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Docks/SwitchDataLine.gd" id="1_nr25p"]
+
+[node name="Index" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+script = ExtResource("1_nr25p")
+
+[node name="name" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_right = 172.0
+offset_bottom = 31.0
+placeholder_text = "var_name"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 6.0
+offset_right = 206.0
+offset_bottom = 30.0
+
+[connection signal="text_changed" from="name" to="." method="_on_name_text_changed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

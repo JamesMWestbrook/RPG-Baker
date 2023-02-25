@@ -1,39 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://dutoo2m3fss1x"]
+[gd_scene load_steps=5 format=3 uid="uid://dutoo2m3fss1x"]
 
-[ext_resource type="PackedScene" uid="uid://cimk2leypwe5v" path="res://addons/rpg_baker/Entity/2DEntity.tscn" id="1_klfxo"]
-[ext_resource type="Script" path="res://addons/rpg_baker/Commands/Command.gd" id="2_gc834"]
-[ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="3_2j4sj"]
-[ext_resource type="Script" path="res://addons/rpg_baker/Commands/ChangeVariable.gd" id="3_tmi7w"]
-[ext_resource type="Script" path="res://addons/rpg_baker/Player.gd" id="4_lu2yf"]
-
-[sub_resource type="Resource" id="Resource_5n06l"]
-script = ExtResource("2_gc834")
-debug_string = "Command 1"
-
-[sub_resource type="Resource" id="Resource_fiadl"]
-script = ExtResource("3_tmi7w")
-index = 2
-value = "Changed in playtest"
-debug_string = ""
+[ext_resource type="PackedScene" uid="uid://cimk2leypwe5v" path="res://addons/rpg_baker/Entity/2DEntity.tscn" id="1_jgsyk"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Player.gd" id="4_8juli"]
+[ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="5_bwsmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w2m4"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Entity" parent="." instance=ExtResource("1_klfxo")]
+[node name="Entity" parent="." instance=ExtResource("1_jgsyk")]
 position = Vector2(599, 144)
 collider_vector_scale = Vector2(6.415, 6.617)
 TouchTrigger = true
 InteractTrigger = false
-CommandsToRun = Array[ExtResource("2_gc834")]([SubResource("Resource_5n06l"), SubResource("Resource_fiadl")])
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(161, 143)
-script = ExtResource("4_lu2yf")
+script = ExtResource("4_8juli")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_4w2m4")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("3_2j4sj")
+texture = ExtResource("5_bwsmv")
