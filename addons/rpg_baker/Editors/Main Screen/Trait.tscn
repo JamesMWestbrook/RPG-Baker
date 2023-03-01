@@ -101,7 +101,6 @@ grow_vertical = 2
 text = "X"
 
 [node name="SpriteLayer" type="Button" parent="BasicTrait"]
-visible = false
 layout_mode = 0
 offset_left = 291.0
 offset_top = 7.0

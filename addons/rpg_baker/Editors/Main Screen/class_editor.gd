@@ -64,10 +64,11 @@ func _update_all_traits():
 	_clear_children($TraitsPanel/ScrollContainer/VBoxContainer)
 #	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
 #		i.queue_free()
-		
+	
 	for i in _get_current_class().traits:
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
+		loaded_trait.index = i.index
 		loaded_trait._on_item_list_item_activated(i.type)
 		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
 		loaded_trait._load()
@@ -207,3 +208,4 @@ func _get_current_class():
 func _update_trait(_trait,index):
 	var traits = _get_current_class().traits[index]
 	_get_current_class().traits[index] = _trait
+	print()

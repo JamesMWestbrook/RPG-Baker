@@ -76,6 +76,8 @@ func _clear_nulls():
 			print("Invalid Switch Name " + str(index))
 			switch_names[index] = ""
 		index += 1
+	_clear_null_classes()
+		
 			
 func _create_actor(index:int):
 	var new_actor = {
@@ -133,3 +135,7 @@ func _clear_null_classes():
 			print(str(index) + " is null, fixing now")
 			classes[index] = _create_class(index)
 		index += 1
+		var trait_index = 0
+		for q in i.traits:
+			q.index = trait_index
+			trait_index += 1
