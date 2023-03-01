@@ -1,0 +1,377 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnjmly35kbiue"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/CastPanel.gd" id="1_txq38"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/TraitsPanel.gd" id="2_ho8rp"]
+[ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="3_m7pe3"]
+[ext_resource type="SpriteFrames" uid="uid://do6fvja3lbtx1" path="res://test-project/sprites/witch base.tres" id="4_gdmit"]
+
+[node name="Cast" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_txq38")
+
+[node name="CountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 9.0
+offset_right = 51.0
+offset_bottom = 35.0
+text = "Count"
+
+[node name="ActorCount" type="LineEdit" parent="CountLabel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 24.0
+offset_right = 66.0625
+offset_bottom = 55.0
+text = "3"
+alignment = 1
+
+[node name="Resize" type="Button" parent="CountLabel"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 23.0
+offset_right = 131.0
+offset_bottom = 54.0
+text = "Resize"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 79.0
+offset_right = 146.0
+offset_bottom = 617.0
+
+[node name="actorlist" type="GridContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(146, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 3.0
+offset_right = 198.0
+offset_bottom = 29.0
+text = "Name"
+
+[node name="NameLineEdit" type="LineEdit" parent="NameLabel"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 304.0
+offset_bottom = 57.0
+text = "Witch Akira"
+
+[node name="Nickname" type="Label" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 61.0
+offset_right = 230.0
+offset_bottom = 87.0
+text = "Nickname"
+
+[node name="NickLineEdit" type="LineEdit" parent="Nickname"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 304.0
+offset_bottom = 57.0
+
+[node name="Profile" type="Label" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 3.0
+offset_right = 537.0
+offset_bottom = 29.0
+text = "Profile"
+
+[node name="ProfileLineEdit" type="TextEdit" parent="Profile"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 446.0
+offset_bottom = 115.0
+wrap_mode = 1
+
+[node name="PreviewLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 273.0
+offset_top = 270.0
+offset_right = 335.0
+offset_bottom = 296.0
+text = "Preview"
+
+[node name="DefaultSettings" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.959
+anchor_right = 0.118
+anchor_bottom = 1.0
+offset_top = -5.703
+offset_right = 0.0639954
+grow_vertical = 0
+text = "Default Settings"
+alignment = 0
+
+[node name="ClassesGrid" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 444.0
+offset_right = 445.0
+offset_bottom = 575.0
+columns = 3
+
+[node name="Classes" type="Label" parent="ClassesGrid"]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+text = "Class(es)"
+
+[node name="Classes2" type="Label" parent="ClassesGrid"]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+
+[node name="Classes3" type="Label" parent="ClassesGrid"]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+text = "Primary:"
+alignment = 0
+
+[node name="Button4" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+text = "Medic"
+alignment = 0
+
+[node name="CheckBox" type="CheckBox" parent="ClassesGrid"]
+layout_mode = 2
+text = "Preview"
+
+[node name="Button2" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+text = "Secondary:"
+alignment = 0
+
+[node name="Button5" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+text = "Hoebag"
+alignment = 0
+
+[node name="CheckBox2" type="CheckBox" parent="ClassesGrid"]
+layout_mode = 2
+text = "Preview"
+
+[node name="Button3" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+text = "Third: "
+alignment = 0
+
+[node name="Button6" type="Button" parent="ClassesGrid"]
+layout_mode = 2
+alignment = 0
+
+[node name="CheckBox3" type="CheckBox" parent="ClassesGrid"]
+layout_mode = 2
+text = "Preview"
+
+[node name="TraitsPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 157.0
+offset_right = 1116.0
+offset_bottom = 575.0
+script = ExtResource("2_ho8rp")
+
+[node name="TraitsLabel" type="Label" parent="TraitsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.5
+offset_top = -27.0
+offset_right = 22.5
+offset_bottom = -1.0
+grow_horizontal = 2
+text = "Traits"
+horizontal_alignment = 1
+
+[node name="PlusButton" type="Button" parent="TraitsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_top = -35.0
+offset_bottom = -4.0
+grow_horizontal = 0
+text = "+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TraitsPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 3.0
+offset_right = 546.0
+offset_bottom = 415.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TraitsPanel/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TraitsPanel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 94.0
+offset_bottom = -3.0
+text = "Lvl Attained"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 207.0
+offset_right = 561.0
+offset_bottom = 261.0
+text = "Clear ALL
+Layers"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 290.0
+offset_right = 566.0
+offset_bottom = 344.0
+text = "Preview
+Animation"
+
+[node name="CurLayerContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 125.0
+offset_right = 459.0
+offset_bottom = 225.0
+
+[node name="Sprite" type="TextureButton" parent="CurLayerContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_m7pe3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CurLayerContainer/Sprite"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_top = 96.0
+offset_right = 100.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "Sprite"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CurLayerContainer/Sprite"]
+position = Vector2(50, 51)
+sprite_frames = ExtResource("4_gdmit")
+animation = &"down"
+
+[node name="Bust" type="TextureButton" parent="CurLayerContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_m7pe3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CurLayerContainer/Bust"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_top = 96.0
+offset_right = 100.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "Sprite"
+horizontal_alignment = 1
+
+[node name="<" type="Button" parent="CurLayerContainer/Bust/Label"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 22.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 10
+text = "<"
+
+[node name=">" type="Button" parent="CurLayerContainer/Bust/Label/<"]
+layout_mode = 0
+offset_left = 74.0
+offset_right = 92.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 10
+text = ">"
+
+[node name="LayerLabel" type="Label" parent="CurLayerContainer/Bust/Label/<"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 2.0
+offset_right = 74.0
+offset_bottom = 28.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 14
+text = "Layer: 1"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CurLayerContainer/Bust"]
+position = Vector2(49, 51)
+
+[node name="BattleSprite" type="TextureButton" parent="CurLayerContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_m7pe3")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CurLayerContainer/BattleSprite"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+offset_top = 96.0
+offset_right = 100.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "Sprite"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CurLayerContainer/BattleSprite"]
+position = Vector2(47, 51)
+
+[node name="PreviewContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 298.0
+offset_right = 459.0
+offset_bottom = 398.0
+
+[node name="SpriteFrameDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(236, 113)
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.tres")
+show_hidden_files = true
+
+[connection signal="button_down" from="CountLabel/Resize" to="." method="_on_resize_button_down"]
+[connection signal="text_changed" from="NameLabel/NameLineEdit" to="." method="_on_name_line_edit_text_changed"]
+[connection signal="button_down" from="TraitsPanel/PlusButton" to="TraitsPanel" method="_on_plus_button_button_down"]
+[connection signal="button_down" from="CurLayerContainer/Sprite" to="." method="_on_sprite_button_down"]
+[connection signal="button_down" from="CurLayerContainer/Bust" to="." method="_on_bust_button_down"]
+[connection signal="button_down" from="CurLayerContainer/Bust/Label/<" to="." method="_on_index_down_button_down"]
+[connection signal="button_down" from="CurLayerContainer/Bust/Label/</>" to="." method="_on_index_up_button_down"]
+[connection signal="button_down" from="CurLayerContainer/BattleSprite" to="." method="_on_battle_sprite_button_down"]
+[connection signal="file_selected" from="SpriteFrameDialog" to="." method="_on_sprite_frame_dialog_file_selected"]

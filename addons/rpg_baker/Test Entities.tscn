@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dutoo2m3fss1x"]
+[gd_scene load_steps=12 format=3 uid="uid://dutoo2m3fss1x"]
 
 [ext_resource type="PackedScene" uid="uid://cimk2leypwe5v" path="res://addons/rpg_baker/Entity/2DEntity.tscn" id="1_jgsyk"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/ChangeSwitch.gd" id="2_t8yfb"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/Conditional.gd" id="3_nvdnk"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/TestCommand.gd" id="3_rd1v8"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Player.gd" id="4_8juli"]
-[ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="5_bwsmv"]
 
 [sub_resource type="Resource" id="Resource_7ma6h"]
 script = ExtResource("2_t8yfb")
@@ -51,12 +50,9 @@ InteractTrigger = false
 CommandsToRun = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_7ma6h"), SubResource("Resource_oub83"), SubResource("Resource_gm6a0")])
 
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(161, 143)
+position = Vector2(291, 152)
 script = ExtResource("4_8juli")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_4w2m4")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("5_bwsmv")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvy61m4lsau1f"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/TraitSubClassRequirement.gd" id="1_2mosx"]
+
+[node name="Class" type="Panel"]
+custom_minimum_size = Vector2(0, 40)
+tooltip_text = "None Checked = active regardless of subclass status"
+script = ExtResource("1_2mosx")
+buttons = Array[CheckBox]([null, null, null, null])
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 430.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="PrimaryButton" type="CheckBox" parent="GridContainer"]
+layout_mode = 2
+text = "Primary"
+
+[node name="SecondaryButton" type="CheckBox" parent="GridContainer"]
+layout_mode = 2
+text = "Secondary"
+
+[node name="TertiaryButton" type="CheckBox" parent="GridContainer"]
+layout_mode = 2
+text = "Tertiary"
+
+[node name="QuaternaryButton" type="CheckBox" parent="GridContainer"]
+layout_mode = 2
+text = "Quaternary"
+
+[connection signal="toggled" from="GridContainer/PrimaryButton" to="." method="_on_primary_button_toggled"]
+[connection signal="toggled" from="GridContainer/SecondaryButton" to="." method="_on_secondary_button_toggled"]
+[connection signal="toggled" from="GridContainer/TertiaryButton" to="." method="_on_tertiary_button_toggled"]
+[connection signal="toggled" from="GridContainer/QuaternaryButton" to="." method="_on_quaternary_button_toggled"]

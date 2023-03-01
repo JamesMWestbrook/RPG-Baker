@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb7d7kxc0mpbq"]
+[gd_scene load_steps=2 format=3 uid="uid://cyv24mu1se7le"]
 
-[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Docks/DatabaseEditor.gd" id="1_jheky"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Docks/DatabaseValueEditor.gd" id="1_jheky"]
 
 [node name="Database" type="Control"]
 layout_mode = 3
@@ -110,6 +110,5 @@ text = "Save"
 
 [connection signal="tab_selected" from="TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="button_down" from="TabContainer/Variables/Resize" to="." method="_on_var_resize_button_down"]
-[connection signal="button_down" from="TabContainer/Variables/counters/CounterButton" to="TabContainer/Variables/counters/CounterButton" method="_on_button_down" flags=18]
 [connection signal="button_down" from="TabContainer/Switches/Resize" to="." method="_on_switch_resize_button_down"]
 [connection signal="button_down" from="Save" to="." method="_on_save_button_down"]
