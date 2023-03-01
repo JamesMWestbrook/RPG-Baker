@@ -54,10 +54,9 @@ func _update_panel(index):
 	
 func _deleted_trait(index):
 	_get_current_class().traits.remove_at(index)
-	var new_index = 0
+	Database._clear_null_classes()
 	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
-		i.index = new_index
-		new_index += 1
+		i.index = i._trait.index
 		
 
 func _update_all_traits():
