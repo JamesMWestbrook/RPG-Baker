@@ -3,7 +3,7 @@ extends VBoxContainer
 var class_trait = false
 var index = 0
 signal update_trait(_trait, index)
-
+signal deleted_trait(index)
 @onready var class_panel = $Class
 
 var _trait = {
@@ -28,8 +28,8 @@ func _ready():
 		
 
 func _on_delete_button_button_down():
+	emit_signal("deleted_trait",index)
 	queue_free()
-	
 	
 
 
@@ -57,3 +57,24 @@ func _on_class_required_state_change(main_class, second_class, third_class, four
 	var require_ranks = [main_class,second_class,third_class,fourth_class]
 	_trait.require_ranks = require_ranks
 	
+
+
+func _on_item_list_item_activated(_index):
+	match index:
+		0: #skill type
+			pass
+		1: # learn skill
+			pass
+		2: # modify stat
+			pass
+		3: # state resist
+			pass
+		4: # class: enable class layer
+			$BasicTrait/SpriteLayer.show()
+		5: #override sprite layer
+			pass
+		6:
+			pass
+	_trait.type = _index
+	emit_signal("update_trait",_trait,index)
+

@@ -52,11 +52,23 @@ func _update_panel(index):
 	_update_all_traits()
 	_get_images(index)
 	
+func _deleted_trait(index):
+	_get_current_class().traits.remove_at(index)
+	var new_index = 0
+	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
+		i.index = new_index
+		new_index += 1
+		
+
 func _update_all_traits():
 	_clear_children($TraitsPanel/ScrollContainer/VBoxContainer)
+#	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
+#		i.queue_free()
+		
 	for i in _get_current_class().traits:
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
+		loaded_trait._on_item_list_item_activated(i.type)
 		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
 		loaded_trait._load()
 		
@@ -110,6 +122,7 @@ func _full_preview(class_index):
 func _clear_children(node):
 	for i in node.get_children():
 		i.queue_free()
+
 func _on_index_down_button_down():
 	$"CurLayerContainer/Bust/Label/</>".show()
 	
@@ -179,16 +192,18 @@ func _on_trait_plus_button_button_down():
 	#_get_current_class().traits += new_trait._trait
 	new_trait.class_trait = true
 	$TraitsPanel/ScrollContainer/VBoxContainer.add_child(new_trait)
-	new_trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().rfind(new_trait)
-	new_trait._trait.index = new_trait.index
+#	new_trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().rfind(new_trait)
 	new_trait.connect("update_trait",_update_trait)
+	new_trait.connect("deleted_trait", _deleted_trait)
 	if !initializing:
 		_get_current_class().traits.append(new_trait._trait)
+		new_trait.index = _get_current_class().traits.size() - 1
+	new_trait._trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().size()-1
 	return new_trait
 
 func _get_current_class():
 	return Database.classes[current_class]
 	
 func _update_trait(_trait,index):
-
+	var traits = _get_current_class().traits[index]
 	_get_current_class().traits[index] = _trait

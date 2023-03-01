@@ -129,6 +129,7 @@ text = "Test"
 
 [connection signal="button_down" from="BasicTrait/TraitSelection" to="BasicTrait/TraitSelection" method="_on_button_down"]
 [connection signal="set_trait_value" from="BasicTrait/TraitSelection" to="." method="_set_trait_value"]
+[connection signal="item_activated" from="BasicTrait/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_activated" from="BasicTrait/ItemList" to="BasicTrait/TraitSelection" method="_on_item_list_item_activated"]
 [connection signal="button_down" from="BasicTrait/TraitSelection2" to="BasicTrait/TraitSelection2" method="_on_button_down"]
 [connection signal="item_activated" from="BasicTrait/ItemList2" to="BasicTrait/TraitSelection" method="_on_item_list_item_activated"]
