@@ -31,7 +31,8 @@ func _init(
 	actor_name = _actor_name
 	nickname = _nickname
 	profile = _profile
-	classes.append_array(_classes)
+	for i in _classes:
+		classes.append(int(i))
 	traits.append_array(_traits)
 	map_sprites.append_array(_map_sprites)
 	busts.append_array(_busts)
