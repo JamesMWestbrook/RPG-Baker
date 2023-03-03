@@ -27,7 +27,7 @@ func _actor_list():
 	var index = 0
 	for i in Database.default_actors:
 		_actor_button(i,index)
-		index += 0
+		index += 1
 	$CountLabel/ActorCount.text = str(Database.default_actors.size())
 
 func _actor_button(actor,button_index):
