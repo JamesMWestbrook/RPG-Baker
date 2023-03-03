@@ -93,6 +93,10 @@ offset_right = 55.0
 offset_bottom = 65.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ri22r")
 auto_height = true
+item_count = 3
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
 
 [node name="Class" parent="." instance=ExtResource("1_avlst")]
 visible = false

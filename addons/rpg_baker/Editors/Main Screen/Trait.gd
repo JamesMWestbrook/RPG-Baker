@@ -48,7 +48,14 @@ func _load():
 	$Class/GridContainer/SecondaryButton.button_pressed = _trait.require_ranks[1]
 	$Class/GridContainer/TertiaryButton.button_pressed = _trait.require_ranks[2]
 	$Class/GridContainer/QuaternaryButton.button_pressed = _trait.require_ranks[3]
-
+	match int(_trait.type):
+		0:
+			pass
+		4:
+			$BasicTrait/SpriteLayer.text = "Layer " + str(_trait.class_layer+1)
+			
+	
+	
 func _on_layer_list_item_activated(_index):
 	$BasicTrait/SpriteLayer.text = "Layer " + str(_index+1)
 	_trait.class_layer = _index

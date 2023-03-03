@@ -68,7 +68,7 @@ func _update_all_traits():
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
 		loaded_trait.index = i.index
-		loaded_trait._on_item_list_item_activated(i.type,false)
+		#loaded_trait._on_item_list_item_activated(i.type,false)
 		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
 		loaded_trait._load()
 	initializing = false
