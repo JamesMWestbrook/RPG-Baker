@@ -6,16 +6,7 @@ signal update_trait(_trait, index)
 signal deleted_trait(index)
 @onready var class_panel = $Class
 
-var _trait = {
-	"type" : "0", #kind of trait it is
-	"index" : 0,
-	
-	#class sprite layer stuff
-	"class_layer" : 0,
-	
-	#class specific requirements
-	"require_ranks" : [false,false,false,false]
-}
+var _trait : RPG_Trait
 
 
 func _ready():
@@ -83,7 +74,7 @@ func _on_item_list_item_activated(_index,actual_click = true):
 			pass
 		6:
 			pass
-	_trait.type = _index
+	_trait.trait_type = _index
 	if actual_click:
 		emit_signal("update_trait",_trait,index)
 

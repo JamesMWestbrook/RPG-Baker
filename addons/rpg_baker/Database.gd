@@ -54,10 +54,13 @@ func _load_defaults():
 		default_actors.append(Actor.new([],[],actor.actor_name, actor.nickname,actor.profile,
 			actor.instanced,actor.classes,actor.map_sprites,actor.busts,actor.battle_sprites))
 	for rpg_class in json_data.classes:
-			classes.append(RPG_Class.new([],rpg_class.name_of_class,rpg_class.description,
+			var new_class = RPG_Class.new([],rpg_class.name_of_class,rpg_class.description,
 			rpg_class.map_sprites,RPG_Class.GraphicType.Image,rpg_class.busts,
 			RPG_Class.GraphicType.Sprite_Frame,rpg_class.battle_sprites
-			))
+			)
+			var traits = _load_traits(rpg_class.traits)
+			new_class.traits = traits
+			classes.append(new_class)
 func _clear_nulls():
 	var index = 0
 	for i in variables:
@@ -86,7 +89,6 @@ func _clear_nulls():
 			print("Invalid Switch Name " + str(index))
 			switch_names[index] = ""
 		index += 1
-	_clear_null_classes()
 
 
 func _create_class(index:int):
@@ -108,23 +110,13 @@ func _create_class(index:int):
 	
 	return new_class
 	
-func _clear_null_actors():
+func _load_traits(obj):
+	var traits :Array[RPG_Trait]
 	var index = 0
-	for i in default_actors:
-		if i == null:
-			print(str(index) + " is null, fixing now")
-			#default_actors[index] = _create_actor(index)
+	for i in obj:
+		var new_trait = RPG_Trait.new(
+			index,i.trait_type,i.class_layer,i.required_ranks
+		)
+		traits.append(new_trait)
 		index += 1
-
-		
-func _clear_null_classes():
-	var index = 0
-	for i in classes:
-		if i == null:
-			print(str(index) + " is null, fixing now")
-			classes[index] = _create_class(index)
-		index += 1
-		var trait_index = 0
-		for q in i.traits:
-			q.index = trait_index
-			trait_index += 1
+	return traits

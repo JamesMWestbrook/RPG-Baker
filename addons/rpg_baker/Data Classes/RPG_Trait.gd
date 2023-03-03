@@ -26,6 +26,9 @@ func _init(_index = 0,
 	
 func _save():
 	var save = {
-		
+		"index": index,
+		"class_layer" : class_layer,
+		"required_ranks" : required_ranks,
+		"trait_type" : trait_type
 	}
 	return save

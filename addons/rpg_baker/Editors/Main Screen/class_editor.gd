@@ -53,7 +53,7 @@ func _update_panel(index):
 	var _class = Database.classes[index]
 	$NameLabel/NameLineEdit.text = _class.name_of_class
 	$Description/DescLineEdit.text = _class.description
-	#_update_all_traits()
+	_update_all_traits()
 	_get_images(index)
 	
 func _deleted_trait(index):
@@ -195,8 +195,12 @@ func _on_trait_plus_button_button_down():
 	new_trait.connect("update_trait",_update_trait)
 	new_trait.connect("deleted_trait", _deleted_trait)
 	if !initializing:
+		new_trait._trait = RPG_Trait.new()
 		_get_current_class().traits.append(new_trait._trait)
 		new_trait.index = _get_current_class().traits.size() - 1
+	else:
+		pass
+		#make trait = new() with full arguments
 	new_trait._trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().size()-1
 	return new_trait
 

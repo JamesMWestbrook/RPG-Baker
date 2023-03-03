@@ -48,4 +48,7 @@ func _save():
 		"battle_graphic_type" : battle_graphic_type,
 		"battle_sprites" : battle_sprites
 	}
+	for i in traits:
+		save.traits.append(i._save())
+	
 	return save
