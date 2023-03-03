@@ -5,7 +5,7 @@ var current_layer = 0
 var current_actor = 0
 
 @onready var file_dialog = $SpriteFrameDialog
-
+var pick_class_button = preload("res://addons/rpg_baker/Editors/Main Screen/pick_class.tscn")
 enum SPRITE_TYPES {NONE, SPRITE, BUST, BATTLE_SPRITE}
 var sprite_waiting: SPRITE_TYPES
 
@@ -15,7 +15,13 @@ func _ready():
 	await get_tree().create_timer(0.01).timeout
 	if Database.default_actors.size() > 0:
 		$ScrollContainer/actorlist.get_child(0).emit_signal("button_down")
-	
+	for i in Database.max_classes:
+		var new_button = pick_class_button.instantiate()
+		new_button.slot_index = i
+		new_button.name = str(i)
+		new_button.connect("assign_class",_assign_class)
+		$ClassesGrid.add_child(new_button)
+	_update_panel(0)
 func _actor_list():
 	_clear_children($ScrollContainer/actorlist)
 	for i in Database.default_actors:
@@ -52,7 +58,10 @@ func _update_panel(index):
 	$Profile/ProfileLineEdit.text = actor.profile
 	
 	_get_images(index)
-	
+	var _index = 0
+	for i in $ClassesGrid.get_children():
+		i._on_item_list_item_activated(actor.classes[_index],true)
+		_index += 1
 	
 #	if actor.sprite.is_empty() or actor.sprite[0] == "":
 #		$CurLayerContainer/Sprite.texture_normal = ""
@@ -69,7 +78,7 @@ func _update_panel(index):
 
 
 func _get_images(index):
-	var actor = Database.default_actors[index]
+	var actor = Database.default_actors[current_actor]
 	#current layer preview
 	var sprite = actor.sprite[current_layer]
 	if sprite != null:
@@ -90,12 +99,12 @@ func _get_images(index):
 		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = null
 		
 	#all layer preview
-	_full_preview(index)
+	_full_preview()
 	
-func _full_preview(actor_index):
+func _full_preview():
 	_clear_children($PreviewContainer)
 	
-	var actor = Database.default_actors[actor_index]
+	var actor = Actor()
 	var index = 0
 	var parent
 	var root_sprite
@@ -170,3 +179,9 @@ func _on_battle_sprite_button_down():
 
 func _on_name_line_edit_text_changed(new_text):
 	Database.default_actors[current_actor].name = new_text
+
+func _assign_class(class_slot,assigned_class):
+	Database.default_actors[current_actor].classes[class_slot] = assigned_class
+
+func Actor():
+	return Database.default_actors[current_actor]

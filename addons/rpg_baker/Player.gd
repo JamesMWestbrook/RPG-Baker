@@ -6,15 +6,8 @@ const JUMP_VELOCITY = -400.0
 var debug = false
 var sprites: Array[AnimatedSprite2D]
 func _ready():
-	_setup_sprites()
-	var index = 0
-	
-	for i in Database.default_actors[0].sprite:
-		if i != null:
-			sprites[index].sprite_frames = load(i)
-		else:
-			sprites[index].sprite_frames = null
-		index += 1
+	_setup_actor_sprites()
+	_assign_actor_sprite_sets()
 	
 	
 func _process(delta):
@@ -71,14 +64,25 @@ func _physics_process(delta):
 			collision.get_collider()._collision()
 
 
-func _setup_sprites():
+func _setup_actor_sprites():
 	for i in Database.max_sprite_layers:
 		var new_sprite = AnimatedSprite2D.new()
 		add_child(new_sprite)
 		sprites.append(new_sprite)
 		new_sprite.scale *= Database.sprite_scale
 		new_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		
+
+
+func _assign_actor_sprite_sets():
+	var index = 0
+	for i in Database.default_actors[0].sprite:
+		if i != null:
+			sprites[index].sprite_frames = load(i)
+		else:
+			sprites[index].sprite_frames = null
+		index += 1
+	
+	pass
 func _set_sprite_anim(new_anim):
 	for i in sprites:
 		if i.sprite_frames:

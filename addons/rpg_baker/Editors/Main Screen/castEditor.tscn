@@ -24,7 +24,7 @@ offset_left = -1.0
 offset_top = 24.0
 offset_right = 66.0625
 offset_bottom = 55.0
-text = "3"
+text = "1"
 alignment = 1
 
 [node name="Resize" type="Button" parent="CountLabel"]
@@ -112,67 +112,21 @@ grow_vertical = 0
 text = "Default Settings"
 alignment = 0
 
-[node name="ClassesGrid" type="GridContainer" parent="."]
+[node name="Classes" type="Label" parent="."]
+custom_minimum_size = Vector2(145, 0)
+layout_mode = 2
+offset_left = 151.0
+offset_top = 418.0
+offset_right = 445.0
+offset_bottom = 444.0
+text = "Class(es)"
+
+[node name="ClassesGrid" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 151.0
 offset_top = 444.0
 offset_right = 445.0
 offset_bottom = 575.0
-columns = 3
-
-[node name="Classes" type="Label" parent="ClassesGrid"]
-custom_minimum_size = Vector2(145, 0)
-layout_mode = 2
-text = "Class(es)"
-
-[node name="Classes2" type="Label" parent="ClassesGrid"]
-custom_minimum_size = Vector2(145, 0)
-layout_mode = 2
-
-[node name="Classes3" type="Label" parent="ClassesGrid"]
-custom_minimum_size = Vector2(145, 0)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-text = "Primary:"
-alignment = 0
-
-[node name="Button4" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-text = "Medic"
-alignment = 0
-
-[node name="CheckBox" type="CheckBox" parent="ClassesGrid"]
-layout_mode = 2
-text = "Preview"
-
-[node name="Button2" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-text = "Secondary:"
-alignment = 0
-
-[node name="Button5" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-text = "Hoebag"
-alignment = 0
-
-[node name="CheckBox2" type="CheckBox" parent="ClassesGrid"]
-layout_mode = 2
-text = "Preview"
-
-[node name="Button3" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-text = "Third: "
-alignment = 0
-
-[node name="Button6" type="Button" parent="ClassesGrid"]
-layout_mode = 2
-alignment = 0
-
-[node name="CheckBox3" type="CheckBox" parent="ClassesGrid"]
-layout_mode = 2
-text = "Preview"
 
 [node name="TraitsPanel" type="Panel" parent="."]
 layout_mode = 0
@@ -291,7 +245,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 15
-text = "Sprite"
+text = "Bust"
 horizontal_alignment = 1
 
 [node name="<" type="Button" parent="CurLayerContainer/Bust/Label"]
@@ -344,7 +298,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 15
-text = "Sprite"
+text = "Battle Sprite"
 horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CurLayerContainer/BattleSprite"]
@@ -368,6 +322,9 @@ show_hidden_files = true
 
 [connection signal="button_down" from="CountLabel/Resize" to="." method="_on_resize_button_down"]
 [connection signal="text_changed" from="NameLabel/NameLineEdit" to="." method="_on_name_line_edit_text_changed"]
+[connection signal="button_down" from="ClassesGrid/0" to="ClassesGrid/0" method="_on_button_down" flags=18]
+[connection signal="button_down" from="ClassesGrid/1" to="ClassesGrid/1" method="_on_button_down" flags=18]
+[connection signal="button_down" from="ClassesGrid/2" to="ClassesGrid/2" method="_on_button_down" flags=18]
 [connection signal="button_down" from="TraitsPanel/PlusButton" to="TraitsPanel" method="_on_plus_button_button_down"]
 [connection signal="button_down" from="CurLayerContainer/Sprite" to="." method="_on_sprite_button_down"]
 [connection signal="button_down" from="CurLayerContainer/Bust" to="." method="_on_bust_button_down"]

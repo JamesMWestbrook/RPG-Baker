@@ -11,6 +11,7 @@ var default_actors = []
 var game_actors = []
 var classes = []
 var max_sprite_layers = 3
+var max_classes = 3
 
 var unit = 1
 var sprite_scale = 3
@@ -93,7 +94,8 @@ func _create_actor(index:int):
 		"stats" : {},
 		"traits" : []
 	}
-	new_actor.classes.resize(3)
+	new_actor.classes.resize(max_classes)
+	new_actor.classes.fill(-1)
 	new_actor.sprite.resize(Database.max_sprite_layers)
 	new_actor.bust.resize(Database.max_sprite_layers)
 	new_actor.battle_sprite.resize(Database.max_sprite_layers)
@@ -126,7 +128,7 @@ func _clear_null_actors():
 			print(str(index) + " is null, fixing now")
 			default_actors[index] = _create_actor(index)
 		index += 1
-		
+
 		
 func _clear_null_classes():
 	var index = 0

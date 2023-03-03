@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b21bj35aphnss"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/pick_class_button.gd" id="1_gwf0d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jftte"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="Button" type="Button"]
+offset_right = 294.0
+offset_bottom = 31.0
+text = "Primary:"
+alignment = 0
+script = ExtResource("1_gwf0d")
+
+[node name="ItemList" type="ItemList" parent="."]
+visible = false
+top_level = true
+layout_mode = 0
+offset_right = 137.0
+offset_bottom = 31.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jftte")
+auto_height = true
+item_count = 1
+item_0/text = "Test"
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="item_activated" from="ItemList" to="." method="_on_item_list_item_activated"]
