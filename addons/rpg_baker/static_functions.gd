@@ -17,9 +17,24 @@ static func _actor_graphics(actor_index,type:String):
 		for i in actor.classes:
 			if i == -1:
 				continue
-			traits.append(Database.classes[i].traits.filter(func(_trait): return _trait.type == 4 and _trait.class_layer == layer_index))
+			traits.append_array(Database.classes[i].traits.filter(func(_trait): return _trait.trait_type == 4 and _trait.class_layer == layer_index))
 			
 			if !traits.is_empty():
 				graphic[layer_index] = Database.classes[i].get(type)[layer_index]
 		layer_index += 1
 	return graphic
+
+static func _image_property_type(type):
+	match type:
+		"map_sprite":
+			return "sprite_frames"
+		"bust":
+			if Database.bust_type == Database.GraphicType.Sprite_Frame:
+				return "sprite_frames"
+			else:
+				return "texture"
+		"battle_sprite":
+			if Database.battle_type == Database.GraphicType.Sprite_Frame:
+				return "sprite_frames"
+			else:
+				return "texture"

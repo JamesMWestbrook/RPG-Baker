@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://brptbgi8ohouj"]
+[gd_scene load_steps=4 format=3 uid="uid://brptbgi8ohouj"]
 
 [ext_resource type="Script" path="res://MenuDisplayActors.gd" id="1_cwvhf"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Menu/TextureDisplayActor.gd" id="2_71stb"]
+[ext_resource type="Texture2D" uid="uid://dsvycl6fmty4y" path="res://test-project/Brunnera.png" id="2_rgd3d"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -10,9 +12,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ActorSprite" type="Node" parent="." node_paths=PackedStringArray("actor_graphic")]
+[node name="ActorGraphic" type="Node" parent="." node_paths=PackedStringArray("actor_graphic")]
 script = ExtResource("1_cwvhf")
 actor_graphic = NodePath("../ActorOne")
 
 [node name="ActorOne" type="AnimatedSprite2D" parent="."]
-position = Vector2(82, 74)
+position = Vector2(194, 127)
+
+[node name="ActorGraphic2" type="Node" parent="." node_paths=PackedStringArray("actor_graphic")]
+script = ExtResource("1_cwvhf")
+graphic_type = 1
+actor_graphic = NodePath("../TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 89.0
+offset_right = 726.0
+offset_bottom = 526.0
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(132, 150)
+layout_mode = 0
+offset_left = 70.0
+offset_right = 1098.0
+offset_bottom = 600.0
+
+[node name="ActorTexture" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(340, 600)
+layout_mode = 2
+texture = ExtResource("2_rgd3d")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_71stb")
+graphic_type = 1
+
+[node name="ActorTexture2" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(340, 600)
+layout_mode = 2
+texture = ExtResource("2_rgd3d")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_71stb")
+graphic_type = 1
+party_index = 1
+
+[node name="ActorTexture3" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(340, 600)
+layout_mode = 2
+texture = ExtResource("2_rgd3d")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("2_71stb")
+graphic_type = 1
+party_index = 2

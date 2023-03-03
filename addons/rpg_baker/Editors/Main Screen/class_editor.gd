@@ -7,7 +7,7 @@ var initializing = true
 @onready var TraitRow = preload("res://addons/rpg_baker/Editors/Main Screen/Trait.tscn")
 enum SPRITE_TYPES {NONE, SPRITE, BUST, BATTLE_SPRITE}
 var sprite_waiting: SPRITE_TYPES
-
+var bust_type
 
 func _ready():
 	_class_list()
@@ -58,7 +58,6 @@ func _update_panel(index):
 	
 func _deleted_trait(index):
 	_get_current_class().traits.remove_at(index)
-	Database._clear_null_classes()
 	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
 		i.index = i._trait.index
 		
@@ -83,11 +82,16 @@ func _get_images(index):
 		$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = null
 		
 	var bust = _class.busts[current_layer]
+	var bust_value
 	if bust != "":
-		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = load(bust)
+		bust_value = load(bust)
 	else:
-		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = null
-		
+		bust_value = null
+	if Database.bust_type == Database.GraphicType.Sprite_Frame:
+		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = bust_value
+	else:
+		$CurLayerContainer/Bust.texture_normal = bust_value
+	
 	var battle_sprite = _class.battle_sprites[current_layer]
 	if battle_sprite != "":
 		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = load(battle_sprite)
@@ -153,7 +157,7 @@ func _on_sprite_frame_dialog_file_selected(path):
 			SPRITE_TYPES.SPRITE:
 				Database.classes[current_class].map_sprites[current_layer] = path
 			SPRITE_TYPES.BUST:
-				Database.classes[current_class].bust[current_layer] = path
+				Database.classes[current_class].busts[current_layer] = path
 			SPRITE_TYPES.BATTLE_SPRITE:
 				Database.classes[current_class].battle_sprite[current_layer] = path
 				
@@ -167,7 +171,13 @@ func _on_sprite_button_down():
 func _on_bust_button_down():
 	sprite_waiting = SPRITE_TYPES.BUST
 	file_dialog.show()
-
+	file_dialog.clear_filters()
+	
+	if Database.bust_type == Database.GraphicType.Image:
+		file_dialog.filters = ["*.jpg","*.png"]
+	else:#spriteframe
+		file_dialog.filters = ["*.tscn"]
+	
 
 func _on_battle_sprite_button_down():
 	sprite_waiting = SPRITE_TYPES.BATTLE_SPRITE
@@ -184,10 +194,15 @@ func _on_desc_line_edit_text_changed():
 
 func _on_sprite_x_button_down():
 	pass # Replace with function body.
-	Database.classes[current_class].sprite[current_layer] = null
+	Database.classes[current_class].map_sprites[current_layer] = ""
 	_update_panel(current_class)
-
-
+	
+func _on_bust_x_button_down():
+	Database.classes[current_class].busts[current_layer] = ""
+	_update_panel(current_class)
+func _on_battle_sprite_x_button_down():
+	Database.classes[current_class].battle_sprites[current_layer] = ""
+	_update_panel(current_class)
 func _on_trait_plus_button_button_down():
 	var new_trait = TraitRow.instantiate()
 	new_trait.class_trait = true
@@ -208,3 +223,6 @@ func _update_trait(_trait,index):
 	var traits = _get_current_class().traits[index]
 	_get_current_class().traits[index] = _trait
 	print()
+
+
+

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://fotiqyqcv8d4"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Entity/EntityTest.gd" id="1_8cexc"]
+[ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="2_vfm3t"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Entity/Entity.gd" id="3_2pvhr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74ujm"]
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_8cexc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vfm3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_74ujm")
+
+[node name="Entity" type="Node" parent="."]
+script = ExtResource("3_2pvhr")
+
+[connection signal="run_event" from="." to="Entity" method="_run_event"]

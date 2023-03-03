@@ -82,11 +82,15 @@ func _get_images(index):
 	
 	if !actor.busts.is_empty():
 		var bust = actor.busts[current_layer]
+		var bust_value
 		if bust != "":
-			$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = load(bust)
+			bust_value = load(bust)
 		else:
-			$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = null
-		
+			bust_value = null
+		if Database.bust_type == Database.GraphicType.Sprite_Frame:
+			$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = bust_value
+		else:
+			$CurLayerContainer/Bust.texture_normal = bust_value
 	if !actor.battle_sprites.is_empty():
 		var battle_sprite = actor.battle_sprites[current_layer]
 		if battle_sprite != "":
@@ -152,7 +156,7 @@ func _on_sprite_frame_dialog_file_selected(path):
 			SPRITE_TYPES.SPRITE:
 				Database.default_actors[current_actor].map_sprites[current_layer] = path
 			SPRITE_TYPES.BUST:
-				Database.default_actors[current_actor].bust[current_layer] = path
+				Database.default_actors[current_actor].busts[current_layer] = path
 			SPRITE_TYPES.BATTLE_SPRITE:
 				Database.default_actors[current_actor].battle_map_sprites[current_layer] = path
 				
@@ -166,7 +170,11 @@ func _on_sprite_button_down():
 func _on_bust_button_down():
 	sprite_waiting = SPRITE_TYPES.BUST
 	file_dialog.show()
-
+	
+	if Database.bust_type == Database.GraphicType.Image:
+		file_dialog.filters = ["*.jpg","*.png"]
+	else:
+		file_dialog.filters = ["*.tscn"]
 
 func _on_battle_sprite_button_down():
 	sprite_waiting = SPRITE_TYPES.BATTLE_SPRITE

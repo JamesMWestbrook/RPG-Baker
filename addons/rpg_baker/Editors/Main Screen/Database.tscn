@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://jbhdmt8brj6h"]
+[gd_scene load_steps=5 format=3 uid="uid://jbhdmt8brj6h"]
 
 [ext_resource type="PackedScene" uid="uid://dnjmly35kbiue" path="res://addons/rpg_baker/Editors/Main Screen/castEditor.tscn" id="1_gq5qe"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/DatabaseMenuEditor.gd" id="1_rfhh8"]
 [ext_resource type="PackedScene" uid="uid://byf7sywsx4ynb" path="res://addons/rpg_baker/Editors/Main Screen/classes.tscn" id="2_rij7r"]
+[ext_resource type="PackedScene" uid="uid://cyv24mu1se7le" path="res://addons/rpg_baker/Editors/Docks/DatabaseValueEditor.tscn" id="4_8d7d5"]
 
 [node name="Database" type="Control"]
 layout_mode = 3
@@ -26,6 +27,10 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Classes" parent="TabContainer" instance=ExtResource("2_rij7r")]
+visible = false
+layout_mode = 2
+
+[node name="Database" parent="TabContainer" instance=ExtResource("4_8d7d5")]
 visible = false
 layout_mode = 2
 

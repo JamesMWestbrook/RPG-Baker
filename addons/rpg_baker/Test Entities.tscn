@@ -8,8 +8,8 @@
 
 [sub_resource type="Resource" id="Resource_7ma6h"]
 script = ExtResource("2_t8yfb")
-index = 2
-value = false
+index = 1
+value = true
 debug_string = ""
 
 [sub_resource type="Resource" id="Resource_oub83"]
@@ -32,7 +32,7 @@ checked_value_type = 1
 compare = 0
 compare_to_database = false
 checked_value = "1"
-compared_value = "true"
+compared_value = "false"
 compare_strings = false
 true_commands_to_run = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_w6es7")])
 false_commands_to_run = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_0bdy8")])

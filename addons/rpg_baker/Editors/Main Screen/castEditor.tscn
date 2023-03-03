@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnjmly35kbiue"]
+[gd_scene load_steps=7 format=3 uid="uid://dnjmly35kbiue"]
 
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/CastPanel.gd" id="1_txq38"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/TraitsPanel.gd" id="2_ho8rp"]
 [ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="3_m7pe3"]
 [ext_resource type="SpriteFrames" uid="uid://do6fvja3lbtx1" path="res://test-project/sprites/witch base.tres" id="4_gdmit"]
 [ext_resource type="SpriteFrames" uid="uid://dfxrn0a4bus4w" path="res://test-project/sprites/Class 0 Base.tres" id="5_5dq6e"]
+[ext_resource type="Texture2D" uid="uid://dsvycl6fmty4y" path="res://test-project/Brunnera.png" id="5_dkfya"]
 
 [node name="Cast" type="Control"]
 layout_mode = 3
@@ -25,7 +26,7 @@ offset_left = -1.0
 offset_top = 24.0
 offset_right = 66.0625
 offset_bottom = 55.0
-text = "0"
+text = "3"
 alignment = 1
 
 [node name="Resize" type="Button" parent="CountLabel"]
@@ -61,7 +62,6 @@ layout_mode = 0
 offset_top = 26.0
 offset_right = 304.0
 offset_bottom = 57.0
-text = "Samantha"
 
 [node name="Nickname" type="Label" parent="."]
 layout_mode = 0
@@ -76,6 +76,7 @@ layout_mode = 0
 offset_top = 26.0
 offset_right = 304.0
 offset_bottom = 57.0
+text = "antha"
 
 [node name="Profile" type="Label" parent="."]
 layout_mode = 0
@@ -232,7 +233,7 @@ animation = &"down"
 [node name="Bust" type="TextureButton" parent="CurLayerContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("3_m7pe3")
+texture_normal = ExtResource("5_dkfya")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -330,6 +331,7 @@ show_hidden_files = true
 [connection signal="button_down" from="ClassesGrid/0" to="ClassesGrid/0" method="_on_button_down" flags=18]
 [connection signal="button_down" from="ClassesGrid/1" to="ClassesGrid/1" method="_on_button_down" flags=18]
 [connection signal="button_down" from="ClassesGrid/2" to="ClassesGrid/2" method="_on_button_down" flags=18]
+[connection signal="button_down" from="ClassesGrid/3" to="ClassesGrid/3" method="_on_button_down" flags=18]
 [connection signal="button_down" from="TraitsPanel/PlusButton" to="TraitsPanel" method="_on_plus_button_button_down"]
 [connection signal="button_down" from="CurLayerContainer/Sprite" to="." method="_on_sprite_button_down"]
 [connection signal="button_down" from="CurLayerContainer/Bust" to="." method="_on_bust_button_down"]

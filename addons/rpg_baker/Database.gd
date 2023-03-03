@@ -7,6 +7,8 @@ var switches = []
 var switch_names = []
 var LocalVariables = {}
 
+enum GraphicType {Sprite_Frame, Image}
+
 var default_actors: Array[Actor]
 var game_actors: Array[Actor]
 var classes: Array[RPG_Class]
@@ -18,6 +20,10 @@ var sprite_scale = 3
 var values_per_column = 20
 
 var defaults_path = "res://data/database.json"
+
+var bust_type = GraphicType.Image
+var battle_type = GraphicType.Sprite_Frame
+
 func _ready():
 	_load_defaults()
 	game_actors = default_actors.duplicate()
