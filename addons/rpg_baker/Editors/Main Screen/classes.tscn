@@ -24,7 +24,7 @@ offset_left = -1.0
 offset_top = 24.0
 offset_right = 66.0625
 offset_bottom = 55.0
-text = "3"
+text = "0"
 alignment = 1
 
 [node name="Resize" type="Button" parent="CountLabel"]

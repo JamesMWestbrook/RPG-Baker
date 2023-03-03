@@ -18,14 +18,16 @@ func _ready():
 	
 func _class_list():
 	_clear_children($ScrollContainer/classlist)
+	var index = 0
 	for i in Database.classes:
-		_class_button(i)
+		_class_button(i,index)
+		index += 1
 	$CountLabel/ClassCount.text = str(Database.classes.size())
 
-func _class_button(_class):
+func _class_button(_class, button_index):
 	var new_button = ButtonIndex.new()
-	new_button.index = _class.index
-	new_button.text = str(_class.index) + " " + _class.name
+	new_button.index = button_index
+	new_button.text = str(button_index) + " " + _class.name
 	new_button.custom_minimum_size.x = 146
 	new_button.connect("button_down",new_button._on_press)
 	new_button.connect("update_panel", _update_panel)
@@ -34,8 +36,10 @@ func _class_button(_class):
 func _on_resize_button_down():
 	var new_count = int($CountLabel/ClassCount.text)
 	Database.classes.resize(new_count)
+	for i in new_count:
+		if Database.classes[i] == null:
+			Database.classes[i] = RPG_Class.new()
 	print("Resizing array. If BRAND NEW actors are null, that is to be expected and they are being formatted as blank slates.")
-	Database._clear_null_classes()
 	_class_list()
 
 func _update_panel(index):
@@ -47,9 +51,9 @@ func _update_panel(index):
 	current_class = index
 	
 	var _class = Database.classes[index]
-	$NameLabel/NameLineEdit.text = _class.name
+	$NameLabel/NameLineEdit.text = _class.name_of_class
 	$Description/DescLineEdit.text = _class.description
-	_update_all_traits()
+	#_update_all_traits()
 	_get_images(index)
 	
 func _deleted_trait(index):
@@ -61,34 +65,31 @@ func _deleted_trait(index):
 
 func _update_all_traits():
 	_clear_children($TraitsPanel/ScrollContainer/VBoxContainer)
-#	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
-#		i.queue_free()
 	initializing = true
 	for i in _get_current_class().traits:
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
 		loaded_trait.index = i.index
-		#loaded_trait._on_item_list_item_activated(i.type,false)
 		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
 		loaded_trait._load()
 	initializing = false
 func _get_images(index):
 	var _class = Database.classes[index]
 	#current layer preview
-	var sprite = _class.sprite[current_layer]
-	if sprite != null:
+	var sprite = _class.map_sprites[current_layer]
+	if sprite != "":
 		$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = load(sprite)
 	else:
 		$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = null
 		
-	var bust = _class.bust[current_layer]
-	if bust != null:
+	var bust = _class.busts[current_layer]
+	if bust != "":
 		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = load(bust)
 	else:
 		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = null
 		
-	var battle_sprite = _class.battle_sprite[current_layer]
-	if battle_sprite != null:
+	var battle_sprite = _class.battle_sprites[current_layer]
+	if battle_sprite != "":
 		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = load(battle_sprite)
 	else:
 		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = null
@@ -103,12 +104,12 @@ func _full_preview(class_index):
 	var index = 0
 	var parent
 	var root_sprite
-	for i in _class.sprite:
+	for i in _class.map_sprites:
 		print(index)
 
 		var sprite_node = AnimatedSprite2D.new()
-		var sprite = _class.sprite[index]
-		if sprite != null:
+		var sprite = _class.map_sprites[index]
+		if sprite != "":
 			sprite_node.sprite_frames = load(sprite)
 
 		if index == 0:
@@ -150,7 +151,7 @@ func _on_index_up_button_down():
 func _on_sprite_frame_dialog_file_selected(path):
 	match sprite_waiting:
 			SPRITE_TYPES.SPRITE:
-				Database.classes[current_class].sprite[current_layer] = path
+				Database.classes[current_class].map_sprites[current_layer] = path
 			SPRITE_TYPES.BUST:
 				Database.classes[current_class].bust[current_layer] = path
 			SPRITE_TYPES.BATTLE_SPRITE:
@@ -174,7 +175,7 @@ func _on_battle_sprite_button_down():
 
 
 func _on_name_line_edit_text_changed(new_text):
-	Database.classes[current_class].name = new_text
+	Database.classes[current_class].name_of_class = new_text
 
 
 func _on_desc_line_edit_text_changed():
@@ -189,10 +190,8 @@ func _on_sprite_x_button_down():
 
 func _on_trait_plus_button_button_down():
 	var new_trait = TraitRow.instantiate()
-	#_get_current_class().traits += new_trait._trait
 	new_trait.class_trait = true
 	$TraitsPanel/ScrollContainer/VBoxContainer.add_child(new_trait)
-#	new_trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().rfind(new_trait)
 	new_trait.connect("update_trait",_update_trait)
 	new_trait.connect("deleted_trait", _deleted_trait)
 	if !initializing:

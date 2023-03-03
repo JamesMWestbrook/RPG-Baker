@@ -29,10 +29,12 @@ func _save_defaults():
 		"switches" : switches,
 		"switch_names" : switch_names,
 		"default_actors": [],
-		"classes":classes
+		"classes":[]
 	}
 	for i in default_actors:
 		database.default_actors.append(i._save())
+	for i in classes:
+		database.classes.append(i._save())
 	var file = FileAccess.open("res://data/database.json", FileAccess.WRITE)
 	var json_string = JSON.stringify(database)
 	file.store_string(json_string)
@@ -51,9 +53,11 @@ func _load_defaults():
 	for actor in json_data.default_actors:
 		default_actors.append(Actor.new([],[],actor.actor_name, actor.nickname,actor.profile,
 			actor.instanced,actor.classes,actor.map_sprites,actor.busts,actor.battle_sprites))
-	#classes = json_data.classes
-	#_clear_nulls()
-	
+	for rpg_class in json_data.classes:
+			classes.append(RPG_Class.new([],rpg_class.name_of_class,rpg_class.description,
+			rpg_class.map_sprites,RPG_Class.GraphicType.Image,rpg_class.busts,
+			RPG_Class.GraphicType.Sprite_Frame,rpg_class.battle_sprites
+			))
 func _clear_nulls():
 	var index = 0
 	for i in variables:

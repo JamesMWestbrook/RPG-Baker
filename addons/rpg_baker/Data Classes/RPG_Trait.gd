@@ -24,3 +24,8 @@ func _init(_index = 0,
 	class_layer = _class_layer
 	required_ranks.append_array(_required_ranks)
 	
+func _save():
+	var save = {
+		
+	}
+	return save
