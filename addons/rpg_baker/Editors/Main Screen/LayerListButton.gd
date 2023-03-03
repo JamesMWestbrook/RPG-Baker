@@ -1,8 +1,10 @@
+@tool
 extends Button
 
 func _ready():
+	$LayerList.clear()
 	for i in Database.max_sprite_layers:
-		$LayerList.add_item(str(i))
+		$LayerList.add_item(str(i+1))
 
 
 

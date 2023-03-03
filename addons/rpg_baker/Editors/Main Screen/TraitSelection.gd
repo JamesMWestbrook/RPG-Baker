@@ -13,7 +13,7 @@ func _on_button_down():
 	
 
 func _on_item_list_item_activated(index):
-	text = item_list.get_item_text(index)
+	text = item_list.get_item_text(int(index))
 	item_list.hide()
 	show()
 

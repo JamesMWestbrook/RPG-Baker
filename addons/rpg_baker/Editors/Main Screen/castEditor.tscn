@@ -24,7 +24,7 @@ offset_left = -1.0
 offset_top = 24.0
 offset_right = 66.0625
 offset_bottom = 55.0
-text = "1"
+text = "0"
 alignment = 1
 
 [node name="Resize" type="Button" parent="CountLabel"]
@@ -60,7 +60,7 @@ layout_mode = 0
 offset_top = 26.0
 offset_right = 304.0
 offset_bottom = 57.0
-text = "Witch Akira"
+text = "Gurl"
 
 [node name="Nickname" type="Label" parent="."]
 layout_mode = 0

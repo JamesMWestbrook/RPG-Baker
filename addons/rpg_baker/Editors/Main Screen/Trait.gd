@@ -50,7 +50,7 @@ func _load():
 	$Class/GridContainer/QuaternaryButton.button_pressed = _trait.require_ranks[3]
 
 func _on_layer_list_item_activated(_index):
-	$BasicTrait/SpriteLayer.text = "Layer " + str(_index)
+	$BasicTrait/SpriteLayer.text = "Layer " + str(_index+1)
 	_trait.class_layer = _index
 	emit_signal("update_trait",_trait,index)
 
@@ -60,7 +60,7 @@ func _on_class_required_state_change(main_class, second_class, third_class, four
 	
 
 
-func _on_item_list_item_activated(_index):
+func _on_item_list_item_activated(_index,actual_click = true):
 	match index:
 		0: #skill type
 			pass
@@ -77,5 +77,6 @@ func _on_item_list_item_activated(_index):
 		6:
 			pass
 	_trait.type = _index
-	emit_signal("update_trait",_trait,index)
+	if actual_click:
+		emit_signal("update_trait",_trait,index)
 

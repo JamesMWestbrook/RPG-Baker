@@ -1,3 +1,4 @@
+@tool
 extends Button
 class_name ButtonIndex
 signal update_panel(index)

@@ -1,3 +1,4 @@
+@tool
 extends Button
 @export var slot_index: int
 signal assign_class(class_slot,assigned_class)

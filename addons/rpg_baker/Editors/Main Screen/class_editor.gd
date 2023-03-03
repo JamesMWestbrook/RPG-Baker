@@ -63,15 +63,15 @@ func _update_all_traits():
 	_clear_children($TraitsPanel/ScrollContainer/VBoxContainer)
 #	for i in $TraitsPanel/ScrollContainer/VBoxContainer.get_children():
 #		i.queue_free()
-	
+	initializing = true
 	for i in _get_current_class().traits:
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
 		loaded_trait.index = i.index
-		loaded_trait._on_item_list_item_activated(i.type)
+		loaded_trait._on_item_list_item_activated(i.type,false)
 		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
 		loaded_trait._load()
-		
+	initializing = false
 func _get_images(index):
 	var _class = Database.classes[index]
 	#current layer preview
@@ -184,7 +184,7 @@ func _on_desc_line_edit_text_changed():
 func _on_sprite_x_button_down():
 	pass # Replace with function body.
 	Database.classes[current_class].sprite[current_layer] = null
-	_update_panel(current_layer)
+	_update_panel(current_class)
 
 
 func _on_trait_plus_button_button_down():

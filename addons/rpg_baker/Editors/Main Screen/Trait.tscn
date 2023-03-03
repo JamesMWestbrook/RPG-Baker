@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://60ely7o5vlny"]
+[gd_scene load_steps=7 format=3 uid="uid://60ely7o5vlny"]
 
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/Trait.gd" id="1_70ihd"]
 [ext_resource type="PackedScene" uid="uid://cvy61m4lsau1f" path="res://addons/rpg_baker/Editors/Main Screen/TraitClassAssign.tscn" id="1_avlst"]
@@ -7,6 +7,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqk4o"]
 bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0.937255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri22r"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="TraitVBoxContainer" type="VBoxContainer"]
 custom_minimum_size = Vector2(500, 22)
@@ -53,33 +56,6 @@ item_3/text = "State Resist"
 item_4/text = "Enable Class Override"
 item_5/text = "Override Sprite Layer"
 
-[node name="TraitSelection2" type="Button" parent="BasicTrait"]
-visible = false
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 285.0
-offset_right = 366.0
-grow_vertical = 2
-text = "Skill Type"
-script = ExtResource("1_fmdfx")
-item_list_path = NodePath("../ItemList")
-
-[node name="ItemList2" type="ItemList" parent="BasicTrait"]
-visible = false
-layout_mode = 0
-offset_left = 286.0
-offset_top = 1.0
-offset_right = 467.0
-offset_bottom = 187.0
-item_count = 6
-item_0/text = "Skill Type"
-item_1/text = "Learn Skill"
-item_2/text = "Modify Stat"
-item_3/text = "State Resist"
-item_4/text = "Enable Class Override"
-item_5/text = "Override Sprite Layer"
-
 [node name="Label" type="Label" parent="BasicTrait"]
 layout_mode = 0
 offset_left = 307.0
@@ -115,6 +91,7 @@ top_level = true
 layout_mode = 1
 offset_right = 55.0
 offset_bottom = 65.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ri22r")
 auto_height = true
 
 [node name="Class" parent="." instance=ExtResource("1_avlst")]
@@ -130,8 +107,6 @@ text = "Test"
 [connection signal="set_trait_value" from="BasicTrait/TraitSelection" to="." method="_set_trait_value"]
 [connection signal="item_activated" from="BasicTrait/ItemList" to="." method="_on_item_list_item_activated"]
 [connection signal="item_activated" from="BasicTrait/ItemList" to="BasicTrait/TraitSelection" method="_on_item_list_item_activated"]
-[connection signal="button_down" from="BasicTrait/TraitSelection2" to="BasicTrait/TraitSelection2" method="_on_button_down"]
-[connection signal="item_activated" from="BasicTrait/ItemList2" to="BasicTrait/TraitSelection" method="_on_item_list_item_activated"]
 [connection signal="button_down" from="BasicTrait/DeleteButton" to="." method="_on_delete_button_button_down"]
 [connection signal="button_down" from="BasicTrait/SpriteLayer" to="BasicTrait/SpriteLayer" method="_on_button_down"]
 [connection signal="item_activated" from="BasicTrait/SpriteLayer/LayerList" to="." method="_on_layer_list_item_activated"]

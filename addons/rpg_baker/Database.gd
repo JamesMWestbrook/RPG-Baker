@@ -107,7 +107,6 @@ func _create_class(index:int):
 		"description" : "",
 		"default" : true,
 		"index" : index,
-		"classes" : [],
 		"sprite" : [],
 		"bust" : [],
 		"battle_sprite": [],
