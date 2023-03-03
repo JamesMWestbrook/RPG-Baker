@@ -70,7 +70,7 @@ func _update_all_traits():
 		var loaded_trait = _on_trait_plus_button_button_down()
 		loaded_trait._trait = i
 		loaded_trait.index = i.index
-		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.type)
+		loaded_trait.get_node("BasicTrait/TraitSelection")._on_item_list_item_activated(i.trait_type)
 		loaded_trait._load()
 	initializing = false
 func _get_images(index):
@@ -198,10 +198,7 @@ func _on_trait_plus_button_button_down():
 		new_trait._trait = RPG_Trait.new()
 		_get_current_class().traits.append(new_trait._trait)
 		new_trait.index = _get_current_class().traits.size() - 1
-	else:
-		pass
-		#make trait = new() with full arguments
-	new_trait._trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().size()-1
+	#new_trait._trait.index = $TraitsPanel/ScrollContainer/VBoxContainer.get_children().size()-1
 	return new_trait
 
 func _get_current_class():

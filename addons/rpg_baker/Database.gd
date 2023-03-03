@@ -11,7 +11,7 @@ var default_actors: Array[Actor]
 var game_actors: Array[Actor]
 var classes: Array[RPG_Class]
 var max_sprite_layers = 3
-var max_classes = 3
+var max_classes = 4
 
 var unit = 1
 var sprite_scale = 3

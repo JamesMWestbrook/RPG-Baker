@@ -76,22 +76,22 @@ func _setup_actor_sprites():
 func _assign_actor_sprite_sets():
 	
 	var actor_layer_index = 0
-	for i in Database.default_actors[0].sprite:
+	for i in Database.default_actors[0].map_sprites:
 		var sprite = _get_layer_sprite(actor_layer_index)
-		if sprite !=  null:
+		if sprite !=  "":
 			sprites[actor_layer_index].sprite_frames = load(_get_layer_sprite(actor_layer_index))
 		else:
 			sprites[actor_layer_index].sprite_frames = null
 		actor_layer_index += 1
 	
 func _get_layer_sprite(layer_index):
-	var sprite = Database.default_actors[0].sprite[layer_index]
+	var sprite = Database.default_actors[0].map_sprites[layer_index]
 	#by default it is taken from the actor,
 	#now we check for class traits that override this
 	for i in Helper._get_actor(0).classes:
-		var traits = Database.classes[i].traits.filter(func(_trait): return _trait.type == 4 and _trait.class_layer == layer_index)
+		var traits = Database.classes[i].traits.filter(func(_trait): return _trait.trait_type == 4 and _trait.class_layer == layer_index)
 		if !traits.is_empty():
-			sprite = Database.classes[i].sprite[layer_index]
+			sprite = Database.classes[i].map_sprites[layer_index]
 	
 	return sprite
 

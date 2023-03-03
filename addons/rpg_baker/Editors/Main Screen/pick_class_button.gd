@@ -10,7 +10,7 @@ func _on_button_down():
 	$ItemList.clear()
 	$ItemList.add_item("None")
 	for i in Database.classes:
-		$ItemList.add_item(i.name)
+		$ItemList.add_item(i.name_of_class)
 	
 	$ItemList.show()
 	$ItemList.position = global_position
@@ -37,7 +37,7 @@ func _on_item_list_item_activated(index,loading = false):
 			emit_signal("assign_class",slot_index,index-1)
 			actual_class_index = index-1
 	if actual_class_index >= 0:
-		text = slot_names[slot_index] + Database.classes[actual_class_index].name
+		text = slot_names[slot_index] + Database.classes[actual_class_index].name_of_class
 	else:
 		text = slot_names[slot_index] + "None"
 	$ItemList.hide()

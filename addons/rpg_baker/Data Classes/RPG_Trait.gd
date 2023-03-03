@@ -23,6 +23,9 @@ func _init(_index = 0,
 	trait_type = _trait_type
 	class_layer = _class_layer
 	required_ranks.append_array(_required_ranks)
+	if required_ranks.is_empty():
+		required_ranks.resize(Database.max_classes)
+		required_ranks.fill(false)
 	
 func _save():
 	var save = {

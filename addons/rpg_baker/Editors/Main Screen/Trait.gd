@@ -31,15 +31,15 @@ func _set_trait_value(key,value):
 
 
 func _load():
-	class_panel.main_class = _trait.require_ranks[0]
-	class_panel.second_class = _trait.require_ranks[1]
-	class_panel.third_class = _trait.require_ranks[2]
-	class_panel.fourth_class = _trait.require_ranks[3]
-	$Class/GridContainer/PrimaryButton.button_pressed = _trait.require_ranks[0]
-	$Class/GridContainer/SecondaryButton.button_pressed = _trait.require_ranks[1]
-	$Class/GridContainer/TertiaryButton.button_pressed = _trait.require_ranks[2]
-	$Class/GridContainer/QuaternaryButton.button_pressed = _trait.require_ranks[3]
-	match int(_trait.type):
+	class_panel.main_class = _trait.required_ranks[0]
+	class_panel.second_class = _trait.required_ranks[1]
+	class_panel.third_class = _trait.required_ranks[2]
+	class_panel.fourth_class = _trait.required_ranks[3]
+	$Class/GridContainer/PrimaryButton.button_pressed = _trait.required_ranks[0]
+	$Class/GridContainer/SecondaryButton.button_pressed = _trait.required_ranks[1]
+	$Class/GridContainer/TertiaryButton.button_pressed = _trait.required_ranks[2]
+	$Class/GridContainer/QuaternaryButton.button_pressed = _trait.required_ranks[3]
+	match int(_trait.trait_type):
 		0:
 			pass
 		4:
@@ -53,8 +53,8 @@ func _on_layer_list_item_activated(_index):
 	emit_signal("update_trait",_trait,index)
 
 func _on_class_required_state_change(main_class, second_class, third_class, fourth_class):
-	var require_ranks = [main_class,second_class,third_class,fourth_class]
-	_trait.require_ranks = require_ranks
+	var required_ranks = [main_class,second_class,third_class,fourth_class]
+	_trait.required_ranks = required_ranks
 	
 
 
