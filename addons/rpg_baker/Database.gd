@@ -7,9 +7,9 @@ var switches = []
 var switch_names = []
 var LocalVariables = {}
 
-var default_actors = []
-var game_actors = []
-var classes = []
+var default_actors: Array[Actor]
+var game_actors: Array[Actor]
+var classes: Array[RPG_Class]
 var max_sprite_layers = 3
 var max_classes = 3
 
@@ -28,9 +28,11 @@ func _save_defaults():
 		"variable_names" : variable_names,
 		"switches" : switches,
 		"switch_names" : switch_names,
-		"default_actors": default_actors,
+		"default_actors": [],
 		"classes":classes
 	}
+	for i in default_actors:
+		database.default_actors.append(i._save())
 	var file = FileAccess.open("res://data/database.json", FileAccess.WRITE)
 	var json_string = JSON.stringify(database)
 	file.store_string(json_string)
@@ -45,9 +47,12 @@ func _load_defaults():
 	variable_names = json_data.variable_names
 	switches = json_data.switches
 	switch_names = json_data.switch_names
-	default_actors = json_data.default_actors
-	classes = json_data.classes
-	_clear_nulls()
+	
+	for actor in json_data.default_actors:
+		default_actors.append(Actor.new([],[],actor.actor_name, actor.nickname,actor.profile,
+			actor.instanced,actor.classes,actor.map_sprites,actor.busts,actor.battle_sprites))
+	#classes = json_data.classes
+	#_clear_nulls()
 	
 func _clear_nulls():
 	var index = 0
@@ -78,28 +83,7 @@ func _clear_nulls():
 			switch_names[index] = ""
 		index += 1
 	_clear_null_classes()
-		
-			
-func _create_actor(index:int):
-	var new_actor = {
-		"name" : "",
-		"nickname" : "",
-		"profile" : "",
-		"default" : true,
-		"index" : index,
-		"classes" : [],
-		"sprite" : [],
-		"bust" : [],
-		"battle_sprite": [],
-		"stats" : {},
-		"traits" : []
-	}
-	new_actor.classes.resize(max_classes)
-	new_actor.classes.fill(-1)
-	new_actor.sprite.resize(Database.max_sprite_layers)
-	new_actor.bust.resize(Database.max_sprite_layers)
-	new_actor.battle_sprite.resize(Database.max_sprite_layers)
-	return new_actor
+
 
 func _create_class(index:int):
 	var new_class = {
@@ -125,7 +109,7 @@ func _clear_null_actors():
 	for i in default_actors:
 		if i == null:
 			print(str(index) + " is null, fixing now")
-			default_actors[index] = _create_actor(index)
+			#default_actors[index] = _create_actor(index)
 		index += 1
 
 		

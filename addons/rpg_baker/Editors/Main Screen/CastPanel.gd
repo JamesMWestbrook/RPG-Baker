@@ -24,14 +24,16 @@ func _ready():
 	_update_panel(0)
 func _actor_list():
 	_clear_children($ScrollContainer/actorlist)
+	var index = 0
 	for i in Database.default_actors:
-		_actor_button(i)
+		_actor_button(i,index)
+		index += 0
 	$CountLabel/ActorCount.text = str(Database.default_actors.size())
 
-func _actor_button(actor):
+func _actor_button(actor,button_index):
 	var new_button = ButtonIndex.new()
-	new_button.index = actor.index
-	new_button.text = str(actor.index) + " " + actor.name
+	new_button.index = button_index
+	new_button.text = str(button_index) + " " + actor.actor_name
 	new_button.custom_minimum_size.x = 146
 	new_button.connect("button_down",new_button._on_press)
 	new_button.connect("update_panel", _update_panel)
@@ -40,8 +42,11 @@ func _actor_button(actor):
 func _on_resize_button_down():
 	var new_count = int($CountLabel/ActorCount.text)
 	Database.default_actors.resize(new_count)
+	for i in new_count:
+		if Database.default_actors[i] == null:
+			Database.default_actors[i] = Actor.new()
 	print("Resizing array. If BRAND NEW actors are null, that is to be expected and they are being formatted as blank slates.")
-	Database._clear_null_actors()
+	#Database._clear_null_actors()
 	_actor_list()
 
 func _update_panel(index):
@@ -51,7 +56,8 @@ func _update_panel(index):
 	
 	$"CurLayerContainer/Bust/Label/</LayerLabel".text = "Layer: 1"
 	current_actor = index
-	
+	if Database.default_actors.is_empty():
+		return
 	var actor = Database.default_actors[index]
 	$NameLabel/NameLineEdit.text = actor.name
 	$Nickname/NickLineEdit.text = actor.nickname
@@ -62,41 +68,31 @@ func _update_panel(index):
 	for i in $ClassesGrid.get_children():
 		i._on_item_list_item_activated(actor.classes[_index],true)
 		_index += 1
-	
-#	if actor.sprite.is_empty() or actor.sprite[0] == "":
-#		$CurLayerContainer/Sprite.texture_normal = ""
-#	else:
-#		pass
-#	if actor.bust == "":
-#		$CurLayerContainer/Bust.texture_normal = ""
-#	else:
-#		pass
-#	if actor.battle_sprite == "":
-#		$CurLayerContainer/BattleSprite.texture_normal = ""
-#	else:
-#		pass
 
 
 func _get_images(index):
 	var actor = Database.default_actors[current_actor]
 	#current layer preview
-	var sprite = actor.sprite[current_layer]
-	if sprite != null:
-		$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = load(sprite)
-	else:
-		$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = null
+	if !actor.map_sprites.is_empty():
+		var sprite = actor.map_sprites[current_layer]
+		if sprite != "":
+			$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = load(sprite)
+		else:
+			$CurLayerContainer/Sprite/AnimatedSprite2D.sprite_frames = null
+	
+	if !actor.busts.is_empty():
+		var bust = actor.busts[current_layer]
+		if bust != "":
+			$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = load(bust)
+		else:
+			$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = null
 		
-	var bust = actor.bust[current_layer]
-	if bust != null:
-		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = load(bust)
-	else:
-		$CurLayerContainer/Bust/AnimatedSprite2D.sprite_frames = null
-		
-	var battle_sprite = actor.battle_sprite[current_layer]
-	if battle_sprite != null:
-		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = load(battle_sprite)
-	else:
-		$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = null
+	if !actor.battle_sprites.is_empty():
+		var battle_sprite = actor.battle_sprites[current_layer]
+		if battle_sprite != "":
+			$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = load(battle_sprite)
+		else:
+			$CurLayerContainer/BattleSprite/AnimatedSprite2D.sprite_frames = null
 		
 	#all layer preview
 	_full_preview()
@@ -104,16 +100,16 @@ func _get_images(index):
 func _full_preview():
 	_clear_children($PreviewContainer)
 	
-	var actor = Actor()
+	var actor = GActor()
 	var index = 0
 	var parent
 	var root_sprite
-	for i in actor.sprite:
+	for i in actor.map_sprites:
 		print(index)
 
 		var sprite_node = AnimatedSprite2D.new()
-		var sprite = actor.sprite[index]
-		if sprite != null:
+		var sprite = actor.map_sprites[index]
+		if sprite != "":
 			sprite_node.sprite_frames = load(sprite)
 
 		if index == 0:
@@ -154,11 +150,11 @@ func _on_index_up_button_down():
 func _on_sprite_frame_dialog_file_selected(path):
 	match sprite_waiting:
 			SPRITE_TYPES.SPRITE:
-				Database.default_actors[current_actor].sprite[current_layer] = path
+				Database.default_actors[current_actor].map_sprites[current_layer] = path
 			SPRITE_TYPES.BUST:
 				Database.default_actors[current_actor].bust[current_layer] = path
 			SPRITE_TYPES.BATTLE_SPRITE:
-				Database.default_actors[current_actor].battle_sprite[current_layer] = path
+				Database.default_actors[current_actor].battle_map_sprites[current_layer] = path
 				
 	_get_images(current_layer)
 
@@ -178,10 +174,14 @@ func _on_battle_sprite_button_down():
 
 
 func _on_name_line_edit_text_changed(new_text):
-	Database.default_actors[current_actor].name = new_text
-
+	Database.default_actors[current_actor].actor_name = new_text
+func _on_nick_line_edit_text_changed(new_text):
+	Database.default_actors[current_actor].nickname = new_text
+func _on_profile_line_edit_text_changed():
+	Database.default_actors[current_actor].profile = $Profile/ProfileLineEdit.text
+	
 func _assign_class(class_slot,assigned_class):
 	Database.default_actors[current_actor].classes[class_slot] = assigned_class
 
-func Actor():
+func GActor():
 	return Database.default_actors[current_actor]

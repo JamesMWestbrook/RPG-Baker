@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnjmly35kbiue"]
+[gd_scene load_steps=6 format=3 uid="uid://dnjmly35kbiue"]
 
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/CastPanel.gd" id="1_txq38"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/TraitsPanel.gd" id="2_ho8rp"]
 [ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="3_m7pe3"]
 [ext_resource type="SpriteFrames" uid="uid://do6fvja3lbtx1" path="res://test-project/sprites/witch base.tres" id="4_gdmit"]
+[ext_resource type="SpriteFrames" uid="uid://dfxrn0a4bus4w" path="res://test-project/sprites/Class 0 Base.tres" id="5_5dq6e"]
 
 [node name="Cast" type="Control"]
 layout_mode = 3
@@ -24,7 +25,7 @@ offset_left = -1.0
 offset_top = 24.0
 offset_right = 66.0625
 offset_bottom = 55.0
-text = "3"
+text = "0"
 alignment = 1
 
 [node name="Resize" type="Button" parent="CountLabel"]
@@ -280,6 +281,8 @@ horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CurLayerContainer/Bust"]
 position = Vector2(49, 51)
+sprite_frames = ExtResource("5_5dq6e")
+animation = &"down"
 
 [node name="BattleSprite" type="TextureButton" parent="CurLayerContainer"]
 custom_minimum_size = Vector2(100, 100)
@@ -322,6 +325,8 @@ show_hidden_files = true
 
 [connection signal="button_down" from="CountLabel/Resize" to="." method="_on_resize_button_down"]
 [connection signal="text_changed" from="NameLabel/NameLineEdit" to="." method="_on_name_line_edit_text_changed"]
+[connection signal="text_changed" from="Nickname/NickLineEdit" to="." method="_on_nick_line_edit_text_changed"]
+[connection signal="text_changed" from="Profile/ProfileLineEdit" to="." method="_on_profile_line_edit_text_changed"]
 [connection signal="button_down" from="ClassesGrid/0" to="ClassesGrid/0" method="_on_button_down" flags=18]
 [connection signal="button_down" from="ClassesGrid/1" to="ClassesGrid/1" method="_on_button_down" flags=18]
 [connection signal="button_down" from="ClassesGrid/2" to="ClassesGrid/2" method="_on_button_down" flags=18]
