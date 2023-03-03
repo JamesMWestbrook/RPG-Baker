@@ -42,3 +42,4 @@ You will need basic knowledge of Godot's dozens of different Node types, but you
 ## Bunch of stuff I want to do EVENTUALLY. If you are using RPG Baker and plan on needing one of the below features please reach out to me in my [discord](https://discord.gg/nQecYmP) so I may consider adding priority.
 * Allow extra animation via SpriteFrame animations to support diagonal animation(You can already MOVE diagonally). 
     * Normally you have 4 animations up/down/left/right, you would be adding an additional 4: upleft,upright,downleft,downright.
+    * Once sprint-specific animations are implemented this would add another 4 to be added to specify direction as well as when sprinting.
