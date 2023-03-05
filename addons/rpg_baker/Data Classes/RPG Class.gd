@@ -3,6 +3,8 @@ class_name RPG_Class
 
 enum GraphicType {Sprite_Frame, Image}
 
+var stats: RPG_Stats
+
 var name_of_class : String
 var description : String
 var traits : Array[RPG_Trait]

@@ -26,9 +26,13 @@ You will need basic knowledge of Godot's dozens of different Node types, but you
     * Trigger event by "examine" action.
 * Battle
     * CURRENT: RPG Stats
+        * Table for setting stats per level
+        * Feature to use formula to autofill table
     * Basic turn based combat.
     * ATB/Counter combat system.
     * No intentions currently of adding on-map battle like Zelda or other map based combat games. 
+* Classes
+    * Option to set different stat curve based on Primary/Secondary/etc class
 ## Completed
 * Events
     * Basic Variable + Switch assignment
