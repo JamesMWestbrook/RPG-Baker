@@ -225,3 +225,4 @@ func _update_trait(_trait,index):
 	print()
 
 
+

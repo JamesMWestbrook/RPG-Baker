@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://byf7sywsx4ynb"]
+[gd_scene load_steps=6 format=3 uid="uid://byf7sywsx4ynb"]
 
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/class_editor.gd" id="1_bduyv"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/TraitsPanel.gd" id="2_iqc4y"]
 [ext_resource type="Texture2D" uid="uid://cvyoj5ye82egh" path="res://icon.svg" id="3_3bnhs"]
 [ext_resource type="SpriteFrames" uid="uid://dfxrn0a4bus4w" path="res://test-project/sprites/Class 0 Base.tres" id="4_np4w7"]
 [ext_resource type="Texture2D" uid="uid://btk06dagnwm0p" path="res://test-project/Brunnera Designs Paladin.jpg" id="5_yksat"]
-[ext_resource type="PackedScene" uid="uid://c88nwjfk8f17u" path="res://addons/rpg_baker/Editors/Main Screen/stat_panel.tscn" id="6_wxgyk"]
 
 [node name="Classes" type="Control"]
 layout_mode = 3
@@ -273,9 +272,6 @@ ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.tres")
 show_hidden_files = true
-
-[node name="Panel" parent="." instance=ExtResource("6_wxgyk")]
-layout_mode = 0
 
 [connection signal="button_down" from="CountLabel/Resize" to="." method="_on_resize_button_down"]
 [connection signal="text_changed" from="NameLabel/NameLineEdit" to="." method="_on_name_line_edit_text_changed"]

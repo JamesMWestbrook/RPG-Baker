@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://mmgd5mtfldn6"]
+
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/Stats/stat_scroll_container.gd" id="1_ilcew"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Editors/Main Screen/Stats/StatGrowthPanel.gd" id="2_1nu0v"]
+
+[node name="AllStatsPanel" type="Panel"]
+offset_right = 436.0
+offset_bottom = 634.0
+script = ExtResource("1_ilcew")
+
+[node name="StatGrowthPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -252.0
+offset_top = 78.0
+offset_bottom = 169.0
+script = ExtResource("2_1nu0v")
+
+[node name="Label" type="Label" parent="StatGrowthPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Value at First Level:
+Value at Last Level:"
+
+[node name="Lvl1Edit" type="LineEdit" parent="StatGrowthPanel"]
+layout_mode = 0
+offset_left = 154.0
+offset_right = 221.063
+offset_bottom = 31.0
+text = "0"
+placeholder_text = "0"
+
+[node name="Lvl99Edit" type="LineEdit" parent="StatGrowthPanel"]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 28.0
+offset_right = 221.063
+offset_bottom = 59.0
+text = "0"
+placeholder_text = "0"
+
+[node name="GenerateSatGrowth" type="Button" parent="StatGrowthPanel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 57.0
+offset_right = 211.0
+offset_bottom = 88.0
+text = "Generate Stat Growth"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 436.0
+offset_bottom = 634.0
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="text_changed" from="StatGrowthPanel/Lvl1Edit" to="StatGrowthPanel" method="_on_lvl_1_valueedit_text_changed"]
+[connection signal="text_changed" from="StatGrowthPanel/Lvl99Edit" to="StatGrowthPanel" method="_on_lvl_99_valueedit_text_changed"]
+[connection signal="button_down" from="StatGrowthPanel/GenerateSatGrowth" to="StatGrowthPanel" method="_on_button_button_down"]

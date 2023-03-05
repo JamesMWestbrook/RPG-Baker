@@ -9,18 +9,20 @@ var database_panel_instance
 
 func _enter_tree():
 	# Initialization of the plugin goes here.
-	database_panel_instance = database_panel.instantiate()
-	get_editor_interface().get_editor_main_screen().add_child(database_panel_instance)
-	
-	_make_visible(false)
-	
+#	database_panel_instance = database_panel.instantiate()
+#	get_editor_interface().get_editor_main_screen().add_child(database_panel_instance)
+#
+#	_make_visible(false)
+	pass
 	
 	
 func _exit_tree():
 	# Clean-up of the plugin goes here.
-	if database_panel_instance:
-		database_panel_instance.queue_free()
-
+#	if database_panel_instance:
+#		database_panel_instance.queue_free()
+	pass
+	
+	
 func _get_plugin_name():
 	return "Database"
 

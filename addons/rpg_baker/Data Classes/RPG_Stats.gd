@@ -26,19 +26,20 @@ var def = 0
 var agi = 0
 
 #level gains
-var growth = [hp_growth,mp_growth,str_growth,int_growth,def_growth,agi_growth]
-var hp_growth = []
-var mp_growth = []
-var str_growth = []
-var int_growth = []
-var def_growth = []
-var agi_growth = []
-
+var growth = []
+static func stat_names():
+	return ["HP","MP","Strength","Intellect","Defense","Agility"]
 #stat growth
 var lvl = 1
 var exp = 0
 
-
+func _init():
+	growth.resize(stat_names().size())
+	for i in growth.size():
+		growth[i] = []
+		growth[i].resize(99)
+		growth[i].fill(0)
+		
 func _ready():#explicitely for testing
 	hp = -7
 	mp = 6
