@@ -37,9 +37,9 @@ layout_mode = 2
 [node name="Save" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1102.0
-offset_top = 34.0
+offset_top = -3.0
 offset_right = 1149.0
-offset_bottom = 65.0
+offset_bottom = 28.0
 text = "SAVE"
 
 [connection signal="button_down" from="Save" to="." method="_on_save_button_down"]

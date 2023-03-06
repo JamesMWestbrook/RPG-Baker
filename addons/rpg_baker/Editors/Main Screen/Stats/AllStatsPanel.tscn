@@ -9,6 +9,7 @@ offset_bottom = 634.0
 script = ExtResource("1_ilcew")
 
 [node name="StatGrowthPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -252.0
 offset_top = 78.0
@@ -53,7 +54,7 @@ offset_right = 436.0
 offset_bottom = 634.0
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="ColumnContainer" type="HBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

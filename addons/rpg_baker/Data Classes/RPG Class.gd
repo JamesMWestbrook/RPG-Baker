@@ -17,7 +17,7 @@ var battle_graphic_type : GraphicType
 var battle_sprites : Array[String]
 
 
-func _init(
+func _init(_stats,
 			_traits:Array[RPG_Trait] = [RPG_Trait.new()],
 			_name_of_class = "",_description = "",
 			_map_sprites = [], _bust_graphic_type = GraphicType.Image, _busts = [],
@@ -38,7 +38,7 @@ func _init(
 	if battle_sprites.is_empty():
 		battle_sprites.resize(Database.max_sprite_layers)
 		
-		
+	stats = RPG_Stats.new(_stats)
 		
 func _save():
 	var save = {
@@ -48,7 +48,8 @@ func _save():
 		"map_sprites" : map_sprites,
 		"busts" : busts,
 		"battle_graphic_type" : battle_graphic_type,
-		"battle_sprites" : battle_sprites
+		"battle_sprites" : battle_sprites,
+		"stats": stats._database_save()
 	}
 	for i in traits:
 		save.traits.append(i._save())

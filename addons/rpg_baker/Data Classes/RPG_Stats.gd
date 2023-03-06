@@ -33,13 +33,31 @@ static func stat_names():
 var lvl = 1
 var exp = 0
 
-func _init():
-	growth.resize(stat_names().size())
-	for i in growth.size():
-		growth[i] = []
-		growth[i].resize(99)
-		growth[i].fill(0)
+func _init(save):
+	if save:
+		growth = save.growth
+	else:
+		growth.resize(stat_names().size())
+		for i in growth.size():
+			growth[i] = []
+			growth[i].resize(99)
+			growth[i].fill(0)
 		
+func _database_save():
+	var save = {
+		"growth" : []
+	}
+	for i in growth:
+		save.growth.append(i)
+	return save
 func _ready():#explicitely for testing
 	hp = -7
 	mp = 6
+
+static func _get_stat(class_index,column_index,row_index,is_actor):
+	var value
+	if is_actor:
+		pass
+	else:
+		value = str(Database.classes[class_index].stats.growth[column_index][row_index])
+	return value

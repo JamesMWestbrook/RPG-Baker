@@ -57,14 +57,15 @@ func _load_defaults():
 	switch_names = json_data.switch_names
 	
 	for actor in json_data.default_actors:
-		default_actors.append(Actor.new([],[],actor.actor_name, actor.nickname,actor.profile,
+		default_actors.append(Actor.new(RPG_Stats.new(false),[],actor.actor_name, actor.nickname,actor.profile,
 			actor.instanced,actor.classes,actor.map_sprites,actor.busts,actor.battle_sprites))
 	for rpg_class in json_data.classes:
-			var new_class = RPG_Class.new([],rpg_class.name_of_class,rpg_class.description,
+			var traits = _load_traits(rpg_class.traits)
+			var new_class = RPG_Class.new(rpg_class.stats,traits,rpg_class.name_of_class,rpg_class.description,
 			rpg_class.map_sprites,RPG_Class.GraphicType.Image,rpg_class.busts,
 			RPG_Class.GraphicType.Sprite_Frame,rpg_class.battle_sprites
 			)
-			var traits = _load_traits(rpg_class.traits)
+			
 			new_class.traits = traits
 			classes.append(new_class)
 func _clear_nulls():

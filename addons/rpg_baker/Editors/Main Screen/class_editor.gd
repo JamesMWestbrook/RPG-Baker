@@ -5,10 +5,12 @@ var current_class = 0
 var initializing = true
 @onready var file_dialog = $SpriteFrameDialog
 @onready var TraitRow = preload("res://addons/rpg_baker/Editors/Main Screen/Trait.tscn")
+@onready var StatsPanel = preload("res://addons/rpg_baker/Editors/Main Screen/Stats/AllStatsPanel.tscn")
 enum SPRITE_TYPES {NONE, SPRITE, BUST, BATTLE_SPRITE}
 var sprite_waiting: SPRITE_TYPES
 var bust_type
-
+@onready var stats_panel:Panel = $AllStatsPanel
+@onready var StatsPanelPos = $AllStatsPanel.position
 func _ready():
 	_class_list()
 	await get_tree().create_timer(0.01).timeout
@@ -38,7 +40,7 @@ func _on_resize_button_down():
 	Database.classes.resize(new_count)
 	for i in new_count:
 		if Database.classes[i] == null:
-			Database.classes[i] = RPG_Class.new()
+			Database.classes[i] = RPG_Class.new(false)
 	print("Resizing array. If BRAND NEW actors are null, that is to be expected and they are being formatted as blank slates.")
 	_class_list()
 
@@ -49,6 +51,11 @@ func _update_panel(index):
 	
 	$"CurLayerContainer/Bust/Label/</LayerLabel".text = "Layer: 1"
 	current_class = index
+
+	#stats_panel = StatsPanel.instantiate()
+	stats_panel.current_index = index
+	stats_panel.class_index = index
+	stats_panel._create_columns()
 	
 	var _class = Database.classes[index]
 	$NameLabel/NameLineEdit.text = _class.name_of_class

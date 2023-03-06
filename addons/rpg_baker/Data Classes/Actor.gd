@@ -17,11 +17,11 @@ var busts : Array[String]
 var battle_graphic_type : GraphicType
 var battle_sprites : Array[String]
 
-var stats : Array[RPG_Stats]
+var stats : RPG_Stats
 
 func _init(
+			_stats:RPG_Stats = RPG_Stats.new(false),
 			_traits:Array[RPG_Trait] = [RPG_Trait.new()],
-			_stats:Array[RPG_Stats] = [RPG_Stats.new()],
 			_actor_name = "",_nickname = "",_profile = "",
 			_instanced = false,
 			_classes = [],
@@ -37,7 +37,7 @@ func _init(
 	map_sprites.append_array(_map_sprites)
 	busts.append_array(_busts)
 	battle_sprites.append_array(_battle_sprites)
-	stats.append_array(_stats)
+	stats = RPG_Stats.new(_stats)
 	
 	
 	if classes.is_empty():
