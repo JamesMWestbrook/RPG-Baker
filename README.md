@@ -28,6 +28,9 @@ You will need basic knowledge of Godot's dozens of different Node types, but you
     * CURRENT: RPG Stats
         * Table for setting stats per level
         * Feature to use formula to autofill table
+        * Set actor's starting LVL
+            * Off starting level initialize base stats
+            * Now do it with base stats on actor directly, not off any assigned classes
     * Basic turn based combat.
     * ATB/Counter combat system.
     * No intentions currently of adding on-map battle like Zelda or other map based combat games. 
