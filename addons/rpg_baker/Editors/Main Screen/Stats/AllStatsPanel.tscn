@@ -51,7 +51,7 @@ text = "Generate Stat Growth"
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_right = 436.0
-offset_bottom = 634.0
+offset_bottom = 582.0
 vertical_scroll_mode = 0
 
 [node name="ColumnContainer" type="HBoxContainer" parent="ScrollContainer"]

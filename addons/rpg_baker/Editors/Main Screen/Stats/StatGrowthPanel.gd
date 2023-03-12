@@ -8,7 +8,7 @@ func _on_close_button_down():
 
 func _on_generate_sat_growth_button_down():
 	var new_stats = StatCurve._curve(first_level_value,last_level_value,99)
-	emit_signal("set_stat_list",new_stats,true)
+	emit_signal("set_stat_list",new_stats)
 	hide()
 
 func _on_lvl_1_edit_text_changed(new_text):

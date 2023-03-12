@@ -59,4 +59,4 @@ func _get_stat_list(index):
 		Scope.RPG_Class:
 			var _class = Database.classes[current_index]
 			stats = Database.classes[current_index].stats
-	ColumnContainer.get_child(index)._set_stat_list(stats.growth[index])
+	#ColumnContainer.get_child(index)._set_stat_list(stats.growth[index])

@@ -6,6 +6,7 @@ var StatRow = preload("res://addons/rpg_baker/Editors/Main Screen/Stats/StatRow.
 var stat_list = []
 signal update_stat(column_index,row_index,value)
 signal get_stats_list(index)
+@onready var row_container = $ScrollContainer/StatRowContainer
 
 func _ready():
 	$StatName.text = RPG_Stats.stat_names()[column_row]
@@ -17,11 +18,13 @@ func _update_stat(column_index,row_index,value):
 	emit_signal("update_stat",column_index,row_index,value)
 
 func _spawn_rows(save_to_stats = false):
+	await get_tree().create_timer(0.01).timeout
 	print( str(column_row) + " Spawn Rows")
-#	for i in $ScrollContainer/VBoxContainer.get_children():
-	#	i.queue_free()
-	#await get_tree().create_timer(1).timeout
-	for i in 5:
+	if is_instance_valid(row_container):
+		for i in row_container.get_children():
+			i.queue_free()
+	#for i in 5:
+	for i in 99:
 		var stat_row = StatRow.instantiate()
 		stat_row.column_row = column_row
 		stat_row.row_index = i 
@@ -43,7 +46,5 @@ func _spawn_rows(save_to_stats = false):
 		
 		
 func _set_stat_list(list):
-	pass
-#	stat_list = list
-#	if rebuild:
-#		_spawn_rows(false)
+	stat_list = list
+	_spawn_rows(true)
