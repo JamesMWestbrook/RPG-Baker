@@ -5,10 +5,6 @@ Uses latest version of Godot 4.
 
 You will need basic knowledge of Godot's dozens of different Node types, but you will not be required to use GDScript for basic functionality through them.
 
-## Disclaimer: This is heavily inspired mostly by [RPG Architect](https://store.steampowered.com/app/2158670/RPG_Architect/), which is run by a solo developer. If RPG Baker does not interest you consider supporting this developer instead :)
-* (You'll actually find me in his discord server)
-* I don't need to tell you the source of both our inspirations is RPG Maker, which needs no links for you to be able to find it and it's many different engines over the past few decades.
-
 
 ## To-Do
 * In Game UI

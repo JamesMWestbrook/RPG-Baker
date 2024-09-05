@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dutoo2m3fss1x"]
+[gd_scene load_steps=14 format=3 uid="uid://dutoo2m3fss1x"]
 
 [ext_resource type="PackedScene" uid="uid://cimk2leypwe5v" path="res://addons/rpg_baker/Entity/2DEntity.tscn" id="1_jgsyk"]
+[ext_resource type="Script" path="res://addons/rpg_baker/Commands/Command.gd" id="2_6tmv0"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/ChangeSwitch.gd" id="2_t8yfb"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/Conditional.gd" id="3_nvdnk"]
 [ext_resource type="Script" path="res://addons/rpg_baker/Commands/TestCommand.gd" id="3_rd1v8"]
@@ -34,8 +35,12 @@ compare_to_database = false
 checked_value = "1"
 compared_value = "false"
 compare_strings = false
-true_commands_to_run = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_w6es7")])
-false_commands_to_run = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_0bdy8")])
+true_commands_to_run = Array[ExtResource("2_6tmv0")]([SubResource("Resource_w6es7")])
+false_commands_to_run = Array[ExtResource("2_6tmv0")]([SubResource("Resource_0bdy8")])
+debug_string = ""
+
+[sub_resource type="Resource" id="Resource_cx1n1"]
+script = ExtResource("3_rd1v8")
 debug_string = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4w2m4"]
@@ -47,7 +52,8 @@ position = Vector2(599, 144)
 collider_vector_scale = Vector2(6.415, 6.617)
 TouchTrigger = true
 InteractTrigger = false
-CommandsToRun = Array[Resource("res://addons/rpg_baker/Commands/Command.gd")]([SubResource("Resource_7ma6h"), SubResource("Resource_oub83"), SubResource("Resource_gm6a0")])
+CommandsToRun = Array[ExtResource("2_6tmv0")]([SubResource("Resource_7ma6h"), SubResource("Resource_oub83"), SubResource("Resource_gm6a0"), SubResource("Resource_cx1n1")])
+EventPages = null
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(291, 152)

@@ -17,7 +17,9 @@ extends CharacterBody2D
 @export var InteractTrigger = false
 #where commands will be set 
 @export var CommandsToRun:Array[Command]
-		
+@export var EventPages = {
+	"pages" : []
+}
 @onready var Collision = $CollisionShape2D
 signal run_event(commands_to_run)
 # Called when the node enters the scene tree for the first time.
