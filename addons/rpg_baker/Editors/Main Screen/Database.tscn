@@ -22,17 +22,21 @@ anchor_bottom = 0.93
 offset_bottom = 45.36
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 0
 
 [node name="Cast" parent="TabContainer" instance=ExtResource("1_gq5qe")]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Classes" parent="TabContainer" instance=ExtResource("2_rij7r")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Database" parent="TabContainer" instance=ExtResource("4_8d7d5")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Save" type="Button" parent="."]
 layout_mode = 0

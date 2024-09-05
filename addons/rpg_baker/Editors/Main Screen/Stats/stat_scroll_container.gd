@@ -44,10 +44,7 @@ func _update_stat(column_index,row_index,value):
 			var _class = Database.classes[current_index]
 			stats = Database.classes[current_index].stats
 			
-	print("Before: " + str(test_stats.growth[column_index][row_index]))
-#	test_stats.growth[column_index][row_index] = value
 	stats.growth[column_index][row_index] = value
-	print("After: " +  str(test_stats.growth[column_index][row_index]))
 	
 func _get_stat_list(index):
 	pass
